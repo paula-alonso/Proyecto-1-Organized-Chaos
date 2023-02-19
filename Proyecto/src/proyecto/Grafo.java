@@ -12,13 +12,13 @@ import javax.swing.JOptionPane;
  */
 public class Grafo {
     private boolean EsDirigido;
-    private int NumAlmacens;
+    private int NumAlmacenes;
     private int NumMaxVert;
     private Almacen[] tablaAdy;
 
     public Grafo(int maxVert) {
         this.EsDirigido = EsDirigido;
-        this.NumAlmacens = 0;
+        this.NumAlmacenes = 0;
         this.NumMaxVert = maxVert;
         this.tablaAdy = new Almacen[maxVert];
     }
@@ -28,27 +28,28 @@ public class Grafo {
         Almacen v = new Almacen(nombre);
         boolean encontrado = false;
         int i = 0;
-        for (; (i < NumAlmacens) && !encontrado;){
+        for (; (i < NumAlmacenes) && !encontrado;){
             encontrado = tablaAdy[i].equals(v);
             if (!encontrado){
                 i++;
             }
-        }if(NumAlmacens > i){
+        }if(NumAlmacenes > i){
             return i;
         }
         return -1;
     }
 
     // Crea un nuevo vértice
-    public void nuevoAlmacen (String nombre) {
+    public void nuevoAlmacen (String nombre, Lista<Almacen> lista) {
         boolean existe = false; 
         if(numAlmacen(nombre) >= 0){
             existe = true;
         }
         if (!existe){
             Almacen v = new Almacen(nombre);
-            v.asigVert(NumAlmacens);
-            tablaAdy[NumAlmacens++] = v;
+            lista.InsertInFinal(v);
+            
+            tablaAdy[NumAlmacenes++] = v;
         }
     } 
     
@@ -86,23 +87,23 @@ public class Grafo {
                 JOptionPane.showMessageDialog(null,"El vértice no existe");
             }
             Ruta ab = new Ruta(v2, peso);
-            Lista<Ruta> rutas = BuscarListaAdAlmacen(a);
-            //rutas.InsertarAlFinal(ab);  Hacer funcion de insertar al final
+            Lista<Ruta> rutas = new Lista<>();
+            rutas.InsertInFinal(ab);  
         }
     }
 
     /**
-     * @return the NumAlmacens
+     * @return the NumAlmacenes
      */
-    public int getNumAlmacens() {
-        return NumAlmacens;
+    public int getNumAlmacenes() {
+        return NumAlmacenes;
     }
 
     /**
-     * @param NumAlmacens the NumAlmacens to set
+     * @param NumAlmacenes the NumAlmacenes to set
      */
-    public void setNumAlmacens(int NumAlmacens) {
-        this.NumAlmacens = NumAlmacens;
+    public void setNumAlmacenes(int NumAlmacenes) {
+        this.NumAlmacenes = NumAlmacenes;
     }
 
     /**
@@ -147,6 +148,30 @@ public class Grafo {
         this.EsDirigido = EsDirigido;
     }
     
-    
+    public void guardarAlmacenes(Lista<Almacen> lista, Lista<Almacen> nueva_lista){
+        Nodo<Almacen> temp = lista.getFirst();
+        if(lista.isEmpty()){
+            JOptionPane.showMessageDialog(null,"No se introdujo ningún almacen");
+            }
+            while(temp != null){
+            nuevoAlmacen(temp.getData().getNombre(), nueva_lista);
+            temp = temp.getpNext();
+        }
+    }     
+
+        public void guardarRutas(Lista<Ruta> lista){
+        Nodo<Ruta> temp = lista.getFirst();
+        if(lista.isEmpty()){
+            JOptionPane.showMessageDialog(null,"No se introdujo ninguna ruta");
+            }
+            while(temp != null){
+            String a = temp.getData().getOrigen_etiqueta();
+            String b = temp.getData().getDestino_etiqueta();
+            double peso = temp.getData().getPeso();
+            AgregarRuta(a, b, peso);
+            temp = temp.getpNext();
+        }
+    }  
+
     
 }

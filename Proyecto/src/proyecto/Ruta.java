@@ -9,6 +9,8 @@ package proyecto;
  * @author alons
  */
 public class Ruta {
+    private String origen_etiqueta;
+    private String destino_etiqueta;
     private int destino;
     private double peso;
 
@@ -56,10 +58,40 @@ public class Ruta {
      * @return the origen
      */
     
+     
+
+    /**
+     * @return the origen_etiqueta
+     */
+    public String getOrigen_etiqueta() {
+        return origen_etiqueta;
+    }
+
+    /**
+     * @param origen_etiqueta the origen_etiqueta to set
+     */
+    public void setOrigen_etiqueta(String origen_etiqueta) {
+        this.origen_etiqueta = origen_etiqueta;
+    }
+
+    /**
+     * @return the destino_etiqueta
+     */
+    public String getDestino_etiqueta() {
+        return destino_etiqueta;
+    }
+
+    /**
+     * @param destino_etiqueta the destino_etiqueta to set
+     */
+    public void setDestino_etiqueta(String destino_etiqueta) {
+        this.destino_etiqueta = destino_etiqueta;
+    }
+    
     public String mostrar() {
-        String ruta = getDestino() + ","+ String.valueOf(getPeso());
+        String ruta = getOrigen_etiqueta() + "," + getDestino_etiqueta() + "," + String.valueOf(getPeso());
         return ruta;        
                 
-    }   
+    }      
     
 }
