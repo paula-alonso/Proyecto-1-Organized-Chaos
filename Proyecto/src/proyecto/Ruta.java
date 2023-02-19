@@ -8,17 +8,18 @@ package proyecto;
  *
  * @author alons
  */
-public class Arco {
+public class Ruta {
     private int destino;
     private double peso;
 
-    public Arco(int destino, double peso) {
+    public Ruta(int destino, double peso) {
+    
         this.destino = destino;
         this.peso = peso;
     }
     
     public boolean equals(Object n){
-        Arco a = (Arco)n;
+        Ruta a = (Ruta)n;
         return destino == a.destino;
     }
 
@@ -49,7 +50,16 @@ public class Arco {
      */
     public void setPeso(double peso) {
         this.peso = peso;
-    }
+    } 
+
+    /**
+     * @return the origen
+     */
     
+    public String mostrar() {
+        String ruta = getDestino() + ","+ String.valueOf(getPeso());
+        return ruta;        
+                
+    }   
     
 }

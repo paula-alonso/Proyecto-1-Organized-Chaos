@@ -12,65 +12,65 @@ import javax.swing.JOptionPane;
  */
 public class Grafo {
     private boolean EsDirigido;
-    private int NumVertices;
+    private int NumAlmacens;
     private int NumMaxVert;
-    private Vertice[] tablaAdy;
+    private Almacen[] tablaAdy;
 
     public Grafo(int maxVert) {
         this.EsDirigido = EsDirigido;
-        this.NumVertices = 0;
+        this.NumAlmacens = 0;
         this.NumMaxVert = maxVert;
-        this.tablaAdy = new Vertice[maxVert];
+        this.tablaAdy = new Almacen[maxVert];
     }
     
      // Busca y devuelve el número de vértice, si no lo encuentra regresa -1
-    public int numVertice(String nombre) {
-        Vertice v = new Vertice(nombre);
+    public int numAlmacen(String nombre) {
+        Almacen v = new Almacen(nombre);
         boolean encontrado = false;
         int i = 0;
-        for (; (i < NumVertices) && !encontrado;){
+        for (; (i < NumAlmacens) && !encontrado;){
             encontrado = tablaAdy[i].equals(v);
             if (!encontrado){
                 i++;
             }
-        }if(NumVertices > i){
+        }if(NumAlmacens > i){
             return i;
         }
         return -1;
     }
 
     // Crea un nuevo vértice
-    public void nuevoVertice (String nombre) {
+    public void nuevoAlmacen (String nombre) {
         boolean existe = false; 
-        if(numVertice(nombre) >= 0){
+        if(numAlmacen(nombre) >= 0){
             existe = true;
         }
         if (!existe){
-            Vertice v = new Vertice(nombre);
-            v.asigVert(NumVertices);
-            tablaAdy[NumVertices++] = v;
+            Almacen v = new Almacen(nombre);
+            v.asigVert(NumAlmacens);
+            tablaAdy[NumAlmacens++] = v;
         }
     } 
     
-    public Lista<Arco> BuscarListaAdVertice(String a){
-        int posicionVertice = numVertice(a);
-        Vertice vertice = tablaAdy[posicionVertice];
-        Lista<Arco> arcos = vertice.getAdyacencia();
-        return arcos;
+    public Lista<Ruta> BuscarListaAdAlmacen(String a){
+        int posicionAlmacen = numAlmacen(a);
+        Almacen vertice = tablaAdy[posicionAlmacen];
+        Lista<Ruta> rutas = vertice.getAdyacencia();
+        return rutas;
     }
 
     
      // Comprueba si dos vertices son adyacentes
     boolean adyacente(String a, String b){
         int v1, v2;
-        v1 = numVertice(a);
-        v2 = numVertice(b);
+        v1 = numAlmacen(a);
+        v2 = numAlmacen(b);
         if(v1 < 0 || v2 < 0) {
             JOptionPane.showMessageDialog(null,"El vértice no existe");
         }
-        Lista<Arco> arcos = BuscarListaAdVertice(a);
-        Nodo<Arco> arco = (Nodo<Arco>) arcos.getFirst();
-        for(int i = 0; i<arcos.getSize(); i++){
+        Lista<Ruta> rutas = BuscarListaAdAlmacen(a);
+        Nodo<Ruta> arco = (Nodo<Ruta>) rutas.getFirst();
+        for(int i = 0; i<rutas.getSize(); i++){
             if (arco.getData().getDestino() == v2){
                 return true;
             }arco = arco.getpNext();
@@ -78,31 +78,31 @@ public class Grafo {
             return false;
         }
     
-    public void AgregarArco(String a, String b, double peso){
+    public void AgregarRuta(String a, String b, double peso){
         if(!adyacente(a,b)){
-            int v1 = numVertice(a);
-            int v2 = numVertice(b);
+            int v1 = numAlmacen(a);
+            int v2 = numAlmacen(b);
             if(v1 < 0 || v2 < 0) {
                 JOptionPane.showMessageDialog(null,"El vértice no existe");
             }
-            Arco ab = new Arco(v2, peso);
-            Lista<Arco> arcos = BuscarListaAdVertice(a);
-            //arcos.InsertarAlFinal(ab);  Hacer funcion de insertar al final
+            Ruta ab = new Ruta(v2, peso);
+            Lista<Ruta> rutas = BuscarListaAdAlmacen(a);
+            //rutas.InsertarAlFinal(ab);  Hacer funcion de insertar al final
         }
     }
 
     /**
-     * @return the NumVertices
+     * @return the NumAlmacens
      */
-    public int getNumVertices() {
-        return NumVertices;
+    public int getNumAlmacens() {
+        return NumAlmacens;
     }
 
     /**
-     * @param NumVertices the NumVertices to set
+     * @param NumAlmacens the NumAlmacens to set
      */
-    public void setNumVertices(int NumVertices) {
-        this.NumVertices = NumVertices;
+    public void setNumAlmacens(int NumAlmacens) {
+        this.NumAlmacens = NumAlmacens;
     }
 
     /**
@@ -122,14 +122,14 @@ public class Grafo {
     /**
      * @return the tablaAdy
      */
-    public Vertice[] getTablaAdy() {
+    public Almacen[] getTablaAdy() {
         return tablaAdy;
     }
 
     /**
      * @param tablaAdy the tablaAdy to set
      */
-    public void setTablaAdy(Vertice[] tablaAdy) {
+    public void setTablaAdy(Almacen[] tablaAdy) {
         this.tablaAdy = tablaAdy;
     }
 

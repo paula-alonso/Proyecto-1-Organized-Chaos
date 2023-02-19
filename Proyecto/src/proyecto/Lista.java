@@ -18,6 +18,10 @@ public class Lista<T> {
         this.Last = null;
         this.size = 0;
     }
+    
+    public boolean isEmpty(){
+        return getFirst() == null;
+    }
 
     
     /**
@@ -61,6 +65,75 @@ public class Lista<T> {
     public void setSize(int size) {
         this.size = size;
     }
+
+    public void InsertAtFirst(Object elem){
+        Nodo nuevo = new Nodo(elem);
+        if(!isEmpty()){
+            nuevo.setpNext(First);
+           
+            First = nuevo;}
+        else{
+            First = nuevo;
+            First.setpNext(Last);
+            Last = nuevo;
+          
+        }
+        size++;
+    }
     
+    public void InsertInFinal(Object elem){
+        Nodo nuevo = new Nodo(elem);
+        if (isEmpty()){
+            this.InsertAtFirst(elem);
+        }else{
+            
+            Last.setpNext(nuevo);
+            Last= nuevo;  
+        }
+        size++;
+    }
+
+
+    public String printProductos(){
+        Nodo<Producto> temp = First;
+        String object_string = "";
+       if(this.isEmpty()){
+        object_string = "No data to show.";
+        }
+        while(temp != null){
+        String object = temp.getData().mostrar();
+        object_string = object_string + "\n" + object;
+        temp = temp.getpNext();
+        }
+        return object_string;
+    }
+    
+    public String printRutas(){
+        Nodo<Ruta> temp = First;
+        String object_string = "";
+       if(this.isEmpty()){
+        object_string = "No data to show.";
+        }
+        while(temp != null){
+        String object = temp.getData().mostrar();
+        object_string = object_string + "\n" + object;
+        temp = temp.getpNext();
+        }
+        return object_string;
+    }    
+    
+    public String print(){
+        Nodo<Almacen> temp = First;
+        String almacenes_string = "";
+       if(this.isEmpty()){
+        almacenes_string = "No data to show.";
+        }
+        while(temp != null){
+        String object = temp.getData().mostrar();
+        almacenes_string = almacenes_string + "\n" + object + "\n";
+        temp = temp.getpNext();
+        }
+        return almacenes_string;
+    }    
     
 }

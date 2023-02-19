@@ -9,6 +9,17 @@ package proyecto;
  * @author alons
  */
 public class Producto {
-    private String name;
+    private String nombre;
     private int cantidad;
+
+    public Producto(String nombre, int cantidad) {
+        this.nombre = nombre;
+        this.cantidad = cantidad;
+    }
+    
+
+    public String mostrar(){
+    String producto_string = nombre + ": " + cantidad;
+    return producto_string;}
+    
 }

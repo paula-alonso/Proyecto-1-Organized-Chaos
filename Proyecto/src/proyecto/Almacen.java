@@ -8,20 +8,20 @@ package proyecto;
  *
  * @author Paula Alonso
  */
-public class Vertice {
+public class Almacen {
     private String nombre;
     private int numvertice;
     private Lista<Producto> productos;
-    private Lista<Arco> adyacencia;
+    private Lista<Ruta> adyacencia;
 
-    public Vertice(String nombre) {
+    public Almacen(String nombre) {
         this.nombre = nombre;
         this.numvertice = -1;
         this.productos = new Lista<Producto> ();
-        this.adyacencia = new Lista<Arco>();
+        this.adyacencia = new Lista<Ruta>();
     }
     
-    public boolean equals(Vertice n){    //Retorna true si dos valores son iguales 
+    public boolean equals(Almacen n){    //Retorna true si dos valores son iguales 
         return nombre.equals(n.nombre);
     }
     public void asigVert(int n) // establece el número de vértices
@@ -79,18 +79,21 @@ public class Vertice {
     /**
      * @return the adyacencia
      */
-    public Lista<Arco> getAdyacencia() {
+    public Lista<Ruta> getAdyacencia() {
         return adyacencia;
     }
 
     /**
      * @param adyacencia the adyacencia to set
      */
-    public void setAdyacencia(Lista<Arco> adyacencia) {
+    public void setAdyacencia(Lista<Ruta> adyacencia) {
         this.adyacencia = adyacencia;
     }
     
-    
+
+    public String mostrar(){
+    String almacen_string = "\n" + nombre + ": " + productos.printProductos();
+    return almacen_string;}    
     
     
 }
