@@ -9,15 +9,18 @@ package proyecto;
  * @author alons
  */
 public class Grafo {
+    private boolean EsDirigido;
     private int NumVertices;
     private int NumMaxVert;
     private Vertice[] tablaAdy;
 
     public Grafo(int maxVert) {
+        this.EsDirigido = EsDirigido;
         this.NumVertices = 0;
         this.NumMaxVert = maxVert;
         this.tablaAdy = new Vertice[maxVert];
     }
+
 
     /**
      * @return the NumVertices
@@ -60,7 +63,20 @@ public class Grafo {
     public void setTablaAdy(Vertice[] tablaAdy) {
         this.tablaAdy = tablaAdy;
     }
-    
+
+    /**
+     * @return the EsDirigido
+     */
+    public boolean isEsDirigido() {
+        return EsDirigido;
+    }
+
+    /**
+     * @param EsDirigido the EsDirigido to set
+     */
+    public void setEsDirigido(boolean EsDirigido) {
+        this.EsDirigido = EsDirigido;
+    }
     
     
     
