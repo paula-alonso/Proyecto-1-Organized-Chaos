@@ -33,7 +33,7 @@ public class Vertice {
         return nombre + " (" + numvertice + ")";
     }
  
-
+    
     /**
      * @return the name
      */

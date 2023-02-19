@@ -19,6 +19,7 @@ public class Lista<T> {
         this.size = 0;
     }
 
+    
     /**
      * @return the First
      */
