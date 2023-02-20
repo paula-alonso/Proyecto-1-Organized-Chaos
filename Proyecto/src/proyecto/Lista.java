@@ -88,9 +88,10 @@ public class Lista<T> {
         }else{
             
             Last.setpNext(nuevo);
-            Last= nuevo;  
+            Last= nuevo; 
+            size++;
         }
-        size++;
+
     }
 
 

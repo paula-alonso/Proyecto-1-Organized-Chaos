@@ -130,14 +130,16 @@ public class Funciones {
                     
                     while (datos[i].equalsIgnoreCase("rutas;")){
                         i++;
-                        while(!datos[i].equalsIgnoreCase("rutas;") && i<datos.length-1){
-                            String[] atrib = datos[i].split(",");
-                            Ruta ruta = new Ruta(0,Integer.parseInt(atrib[2]));
-                            ruta.setOrigen_etiqueta(atrib[0]);
-                            ruta.setDestino_etiqueta(atrib[1]);
-                            lista_rutas.InsertInFinal(ruta);
-                            i++;
+                            while(i<datos.length){
+                                String[] atrib = datos[i].split(",");
+                                Ruta ruta = new Ruta(0,Integer.parseInt(atrib[2]));
+                                ruta.setOrigen_etiqueta(atrib[0]);
+                                ruta.setDestino_etiqueta(atrib[1]);
+                                lista_rutas.InsertInFinal(ruta);
+                                i++;
                             }
+                            if (i == datos.length) {break;}
+                        
 
                             }
                     }
@@ -149,10 +151,8 @@ public class Funciones {
             JOptionPane.showMessageDialog(null, ex);}
         
         
-            Grafo grafo = new Grafo(lista_almacenes.getSize());
-            Lista<Almacen> almacenes = new Lista<>();
-            
-            grafo.guardarAlmacenes(lista_almacenes, almacenes);
+            Grafo grafo = new Grafo();
+            grafo.guardarAlmacenes(lista_almacenes);
             grafo.setEsDirigido(true);
             grafo.guardarRutas(lista_rutas);
           
