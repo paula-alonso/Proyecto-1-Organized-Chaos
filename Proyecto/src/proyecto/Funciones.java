@@ -233,7 +233,7 @@ public class Funciones {
           }
        
 
-    public boolean ValidarNumero(String text) {
+    public static boolean ValidarNumero(String text) {
         try{
               int num = Integer.parseInt(text);
               return true;

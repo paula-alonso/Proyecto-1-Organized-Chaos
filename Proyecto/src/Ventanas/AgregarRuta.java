@@ -202,28 +202,36 @@ public class AgregarRuta extends javax.swing.JFrame {
     }//GEN-LAST:event_OrigenActionPerformed
 
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
-        Funciones func = new Funciones();
+
         Grafo grafo = Menu.grafo;
         String almacenOr = (String) Origen.getSelectedItem();
         String almacenDest = (String) Destino.getSelectedItem();
-        boolean numero = func.ValidarNumero(distancia.getText());
-        if(numero){
-            if(Integer.parseInt(distancia.getText())>0){
-                Almacen almacenD = grafo.BuscarAlmacen(almacenDest).getData();
-                Ruta rutaNueva = new Ruta(almacenOr, almacenDest,Integer.parseInt(distancia.getText()));
-                if(!grafo.adyacente(almacenOr, almacenDest)){
-                    JOptionPane.showMessageDialog(null, "Ruta guardada exitosamente");
-                    grafo.AgregarRuta(rutaNueva);
+        if(!almacenOr.equalsIgnoreCase(almacenDest)){
+            boolean numero = Funciones.ValidarNumero(distancia.getText());
+
+            if(numero){// confirma que sea un número
+
+                if(Integer.parseInt(distancia.getText())>0){
+
+                    Almacen almacenD = grafo.BuscarAlmacen(almacenDest).getData();
+                    Ruta rutaNueva = new Ruta(almacenOr, almacenDest,Integer.parseInt(distancia.getText()));
+
+                    if(!grafo.adyacente(almacenOr, almacenDest)){ // Confirma que la ruta no exista para agregarla, si si existe, no la agrega y 
+                                                                       // lanza un mensaje
+
+                        JOptionPane.showMessageDialog(null, "Ruta guardada exitosamente");
+                        grafo.AgregarRuta(rutaNueva);
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Esa ruta ya existe");
+                    }
                 }else{
-                    JOptionPane.showMessageDialog(null, "Esa ruta ya existe");
+                    JOptionPane.showMessageDialog(null, "Cantidad inválida");
                 }
-            }else{
-                JOptionPane.showMessageDialog(null, "Cantidad inválida");
             }
+        
+        }else{
+            JOptionPane.showMessageDialog(null, "Debe ser una ruta a un almacén diferente");
         }
-        int x = 1;
-        
-        
     }//GEN-LAST:event_GuardarActionPerformed
 
     private void distanciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_distanciaActionPerformed
