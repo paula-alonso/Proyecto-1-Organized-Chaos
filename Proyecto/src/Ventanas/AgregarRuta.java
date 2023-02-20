@@ -6,7 +6,13 @@ package Ventanas;
 
 import java.awt.Color;
 import java.io.File;
-
+import javax.swing.JOptionPane;
+import proyecto.Grafo;
+import proyecto.Almacen;
+import proyecto.Ruta;
+import proyecto.Nodo;
+import proyecto.Lista;
+import proyecto.Funciones;
 
 /**
  *
@@ -37,10 +43,11 @@ public class AgregarRuta extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        Distancia1 = new javax.swing.JTextField();
+        distancia = new javax.swing.JTextField();
         Destino = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         Origen = new javax.swing.JComboBox<>();
+        Guardar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Nueva ruta");
@@ -74,9 +81,9 @@ public class AgregarRuta extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
         jLabel6.setText("Distancia");
 
-        Distancia1.addActionListener(new java.awt.event.ActionListener() {
+        distancia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Distancia1ActionPerformed(evt);
+                distanciaActionPerformed(evt);
             }
         });
 
@@ -105,6 +112,15 @@ public class AgregarRuta extends javax.swing.JFrame {
             }
         });
 
+        Guardar.setBackground(new java.awt.Color(67, 163, 191));
+        Guardar.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
+        Guardar.setText("Guardar ruta");
+        Guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GuardarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -118,19 +134,23 @@ public class AgregarRuta extends javax.swing.JFrame {
                         .addGap(65, 65, 65)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Origen, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Destino, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(41, 41, 41)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Distancia1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(Volver, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(Volver, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(Origen, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(Destino, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(41, 41, 41)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(distancia, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(80, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -146,10 +166,12 @@ public class AgregarRuta extends javax.swing.JFrame {
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Distancia1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(distancia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Origen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(42, 42, 42)
-                .addComponent(Volver)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Volver)
+                    .addComponent(Guardar))
                 .addGap(56, 56, 56))
         );
 
@@ -161,10 +183,6 @@ public class AgregarRuta extends javax.swing.JFrame {
         Menu.menu.setVisible(true);
         dispose();
     }//GEN-LAST:event_VolverActionPerformed
-
-    private void Distancia1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Distancia1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Distancia1ActionPerformed
 
     private void DestinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DestinoMouseClicked
         // TODO add your handling code here:
@@ -182,6 +200,35 @@ public class AgregarRuta extends javax.swing.JFrame {
     private void OrigenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrigenActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_OrigenActionPerformed
+
+    private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
+        Funciones func = new Funciones();
+        Grafo grafo = Menu.grafo;
+        String almacenOr = (String) Origen.getSelectedItem();
+        String almacenDest = (String) Destino.getSelectedItem();
+        boolean numero = func.ValidarNumero(distancia.getText());
+        if(numero){
+            if(Integer.parseInt(distancia.getText())>0){
+                Almacen almacenD = grafo.BuscarAlmacen(almacenDest).getData();
+                Ruta rutaNueva = new Ruta(almacenOr, almacenDest,Integer.parseInt(distancia.getText()));
+                if(!grafo.adyacente(almacenOr, almacenDest)){
+                    JOptionPane.showMessageDialog(null, "Ruta guardada exitosamente");
+                    grafo.AgregarRuta(rutaNueva);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Esa ruta ya existe");
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Cantidad inválida");
+            }
+        }
+        int x = 1;
+        
+        
+    }//GEN-LAST:event_GuardarActionPerformed
+
+    private void distanciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_distanciaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_distanciaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -232,10 +279,11 @@ public class AgregarRuta extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JComboBox<String> Destino;
-    private javax.swing.JTextField Distancia1;
+    private javax.swing.JButton Guardar;
     private static javax.swing.JPanel Header;
     public static javax.swing.JComboBox<String> Origen;
     private javax.swing.JButton Volver;
+    private javax.swing.JTextField distancia;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

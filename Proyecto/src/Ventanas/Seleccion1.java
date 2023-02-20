@@ -39,6 +39,11 @@ public class Seleccion1 extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         SeleccionBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Almacén", "Ruta" }));
+        SeleccionBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SeleccionBoxActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Selecciona una opción");
 
@@ -129,6 +134,10 @@ public class Seleccion1 extends javax.swing.JFrame {
         Menu.menu.setVisible(false);
         dispose();
     }//GEN-LAST:event_OKActionPerformed
+
+    private void SeleccionBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SeleccionBoxActionPerformed
 
     /**
      * @param args the command line arguments

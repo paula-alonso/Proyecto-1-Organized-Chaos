@@ -232,7 +232,15 @@ public class Funciones {
 
           }
        
-      
+
+    public boolean ValidarNumero(String text) {
+        try{
+              int num = Integer.parseInt(text);
+              return true;
+          }catch(Exception e){
+              JOptionPane.showMessageDialog(null, "Introduzca una cifra válida");
+          }return false;
+    }
       
       
         
