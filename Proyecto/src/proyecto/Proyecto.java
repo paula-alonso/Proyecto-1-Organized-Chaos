@@ -22,6 +22,7 @@ public class Proyecto {
     
     public void main(){
         // TODO code application logic here
+<<<<<<< HEAD
 
     Funciones.ActualizarRepositorio(grafo, fichero); 
  
@@ -32,5 +33,12 @@ public class Proyecto {
     }
 
       
+=======
+    File fichero = Funciones.FileChooser();
+    Grafo grafo = Funciones.LeerTxt(fichero);
+    Funciones.ActualizarRepositorio(grafo, fichero);
+    }
+    
+>>>>>>> e432acb4afe71ed776ba2083087422996bfc6277
     
 }

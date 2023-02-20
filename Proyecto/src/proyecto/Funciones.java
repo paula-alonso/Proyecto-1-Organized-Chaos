@@ -166,10 +166,13 @@ public class Funciones {
       }
       
         public static void ActualizarRepositorio(Grafo grafo, File fichero){
+<<<<<<< HEAD
             if (fichero == null) {JOptionPane.showMessageDialog(null, "No ha seleccionado ningún archivo");} 
             
             else {
             
+=======
+>>>>>>> e432acb4afe71ed776ba2083087422996bfc6277
             String path = fichero.getAbsolutePath();
             String infoAlm = "";
             String infoRut = "";
@@ -224,8 +227,11 @@ public class Funciones {
             }catch(Exception err){
                 JOptionPane.showMessageDialog(null, err);
             }
+<<<<<<< HEAD
             
             }
+=======
+>>>>>>> e432acb4afe71ed776ba2083087422996bfc6277
           }
        
       
