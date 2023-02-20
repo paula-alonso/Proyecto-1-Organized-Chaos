@@ -9,6 +9,7 @@ import static java.awt.image.ImageObserver.HEIGHT;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.PrintWriter;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -52,9 +53,7 @@ public class Funciones {
          br = new BufferedReader(fr);
 
          // Lectura del fichero/////////////////////////////////////////////////////////////////////
-         System.out.print(LeerTxt(archivo).getLista_almacenes().print());
-         System.out.print(LeerTxt(archivo).getLista_rutas().printRutas());
-        
+
       }
       catch(Exception e){
          e.printStackTrace();
@@ -73,7 +72,7 @@ public class Funciones {
       }
    }
 
-      public static ArrayListas LeerTxt(File archivo){
+      public static Grafo LeerTxt(File archivo){
 
         Lista<Almacen> lista_almacenes = new Lista<>();
         Lista<Ruta> lista_rutas = new Lista<>();
@@ -126,7 +125,7 @@ public class Funciones {
                     }
                         
                     
-                
+                //En este bucle se buscan las rutas registradas en el archivo seleccionado
                     
                     while (datos[i].equalsIgnoreCase("rutas;")){
                         i++;
@@ -156,12 +155,70 @@ public class Funciones {
             grafo.setEsDirigido(true);
             grafo.guardarRutas(lista_rutas);
           
+            // Eliminar arrayListas despues
             ArrayListas arr_list = new ArrayListas(lista_almacenes, lista_rutas);
         
-            return arr_list;
+            return grafo;
    
       
       }
+      
+        public static void ActualizarRepositorio(Grafo grafo, File fichero){
+            String path = fichero.getAbsolutePath();
+            String infoAlm = "";
+            String infoRut = "";
+            String amazontxt = "";
+            if (!grafo.isEmpty()){
+                
+                // En esta primera parte del algoritmo se obtiene la informacion de los almacenes
+                Lista<Almacen> listaDeAlmacenes = grafo.getListaAlm();
+                Nodo<Almacen> almacen = listaDeAlmacenes.getFirst();
+                infoAlm += "Almacenes;\n";
+                infoRut += "Rutas;\n";
+                for (int i = 0; i<listaDeAlmacenes.getSize(); i++){
+                    
+//                    Formato de almacen:
+//                    Almacen A:
+//                    Pantalla,3
+//                    RAM,2
+//                    Procesador,1;
+
+                    infoAlm += "Almacen "+almacen.getData().getNombre()+":\n";
+                    Lista<Producto> productos = almacen.getData().getProductos();
+                    Nodo<Producto> producto = productos.getFirst();
+                    for (int j = 0; j<productos.getSize();j++){
+                        if(producto.getpNext() == null){
+                           infoAlm += producto.getData().getNombre()+","+producto.getData().getCantidad()+";\n"; 
+                        }else{
+                            infoAlm += producto.getData().getNombre()+","+producto.getData().getCantidad()+"\n";
+                            
+                        }producto = producto.getpNext();
+                    }
+                    
+                    //Se recorren las listas de adyacencia para obtener las rutas
+                    
+                    Lista<Ruta> rutas = almacen.getData().getAdyacencia();
+                    Nodo<Ruta> ruta = rutas.getFirst();
+                    for (int a = 0; a<rutas.getSize(); a++){
+                        
+                        // A,B,10 Formato de ruta 
+                        
+                        infoRut+= ruta.getData().getOrigen_etiqueta()+","+ruta.getData().getDestino_etiqueta()+","+ruta.getData().getPeso()+"\n";
+                        ruta = ruta.getpNext();
+                    }
+                    almacen = almacen.getpNext();
+                }
+                amazontxt = infoAlm + infoRut;
+            }try{
+                PrintWriter pw = new PrintWriter(path);
+                pw.print(amazontxt);
+                pw.close();
+                JOptionPane.showMessageDialog(null, "Guardado exitoso");
+
+            }catch(Exception err){
+                JOptionPane.showMessageDialog(null, err);
+            }
+          }
        
       
       

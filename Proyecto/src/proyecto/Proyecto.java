@@ -18,7 +18,9 @@ public class Proyecto {
     public static void main(String[] args) {
         // TODO code application logic here
     File fichero = Funciones.FileChooser();
-    Funciones.LeerFichero(fichero);
+    Grafo grafo = Funciones.LeerTxt(fichero);
+    Funciones.ActualizarRepositorio(grafo, fichero);
     }
+    
     
 }

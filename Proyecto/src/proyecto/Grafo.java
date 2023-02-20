@@ -20,6 +20,11 @@ public class Grafo {
         this.NumAlmacenes = 0;
         this.listaAlm = new Lista<Almacen>();
     }
+    
+    public boolean isEmpty(){
+        return NumAlmacenes == 0;
+    }
+    
     // Busca el almacen por el nombre, si no lo encuentra o la lista de almacenes está vacia, retorna null
     public Nodo<Almacen> BuscarAlmacen(String nombre){
         if(!listaAlm.isEmpty()){
