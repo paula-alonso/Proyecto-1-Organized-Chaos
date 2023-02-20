@@ -50,15 +50,15 @@ public class Grafo {
     }
 
     // Crea un nuevo vértice
-    public void nuevoAlmacen (String nombre) {
+    public void nuevoAlmacen (Almacen almacen) {
+        String nombre = almacen.getNombre();
         boolean existe = false; 
         if(BuscarAlmacen(nombre)!= null){
             existe = true;
         }
         if (!existe){
-            Almacen v = new Almacen(nombre);
-            v.asigVert(NumAlmacenes);
-            listaAlm.InsertInFinal(v);
+            almacen.asigVert(NumAlmacenes);
+            listaAlm.InsertInFinal(almacen);
             NumAlmacenes++;
         }
     } 
@@ -83,16 +83,18 @@ public class Grafo {
             return false;
         }
     
-    public void AgregarRuta(String a, String b, double peso){
-        if(!adyacente(a,b)){
+    public void AgregarRuta(Ruta ruta){
+        String a = ruta.getOrigen_etiqueta();
+        String b = ruta.getDestino_etiqueta();
+        if(!adyacente(a, b)){
             int v1 = numAlmacen(a);
             int v2 = numAlmacen(b);
             if(v1 < 0 || v2 < 0) {
                 JOptionPane.showMessageDialog(null,"El vértice no existe");
-            }
-            Ruta ab = new Ruta(v2, peso);
+            }else{
             Nodo<Almacen> almacen = BuscarAlmacen(a);
-            almacen.getData().getAdyacencia().InsertInFinal(ab);  
+            almacen.getData().getAdyacencia().InsertInFinal(ruta);
+            }  
         }
     }
     
@@ -102,7 +104,7 @@ public class Grafo {
             }else{
             Nodo<Almacen> temp = (Nodo<Almacen>) lista.getFirst();
             while(temp != null){
-            nuevoAlmacen(temp.getData().getNombre());
+            nuevoAlmacen(temp.getData());
             temp = temp.getpNext();}
         }
     }     
@@ -113,10 +115,8 @@ public class Grafo {
             JOptionPane.showMessageDialog(null,"No se introdujo ninguna ruta");
             }
             while(temp != null){
-            String a = temp.getData().getOrigen_etiqueta();
-            String b = temp.getData().getDestino_etiqueta();
-            double peso = temp.getData().getPeso();
-            AgregarRuta(a, b, peso);
+            Ruta ruta = temp.getData();
+            AgregarRuta(ruta);
             temp = temp.getpNext();
         }
     }  
