@@ -93,6 +93,10 @@ public class Almacen {
 
     public String mostrar(){
     String almacen_string = "\n" + nombre + ": " + productos.printProductos();
+    return almacen_string;}
+
+    public String nombres(){
+    String almacen_string =  nombre + "\n";
     return almacen_string;}    
     
     

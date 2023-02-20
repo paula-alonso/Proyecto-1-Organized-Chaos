@@ -5,10 +5,10 @@
 package proyecto;
 
 import java.awt.Component;
-import static java.awt.image.ImageObserver.HEIGHT;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.PrintWriter;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -52,9 +52,7 @@ public class Funciones {
          br = new BufferedReader(fr);
 
          // Lectura del fichero/////////////////////////////////////////////////////////////////////
-         System.out.print(LeerTxt(archivo).getLista_almacenes().print());
-         System.out.print(LeerTxt(archivo).getLista_rutas().printRutas());
-        
+
       }
       catch(Exception e){
          e.printStackTrace();
@@ -73,7 +71,7 @@ public class Funciones {
       }
    }
 
-      public static ArrayListas LeerTxt(File archivo){
+      public static Grafo LeerTxt(File archivo){
 
         Lista<Almacen> lista_almacenes = new Lista<>();
         Lista<Ruta> lista_rutas = new Lista<>();
@@ -98,10 +96,13 @@ public class Funciones {
                 
                 String nombre_almacen = "";
                 String[] datos = almacenestxt.split("\n");
+                
+                
+                //En este bucle se buscan los almacenes registradss en el archivo seleccionado
 
                     int i = 0;
                     while ( i<datos.length-1){
-                        if (datos[i].equalsIgnoreCase("rutas;")) {break;}
+                        if (datos[i].equalsIgnoreCase("rutas;")) {break;} //Se rompe el bucle al llegar a las rutas
                         
                             if(datos[i].contains(":")){
                                 nombre_almacen = datos[i].replace(":", "");
@@ -126,18 +127,20 @@ public class Funciones {
                     }
                         
                     
-                
+                //En este bucle se buscan las rutas registradas en el archivo seleccionado
                     
                     while (datos[i].equalsIgnoreCase("rutas;")){
                         i++;
-                        while(!datos[i].equalsIgnoreCase("rutas;") && i<datos.length-1){
-                            String[] atrib = datos[i].split(",");
-                            Ruta ruta = new Ruta(0,Integer.parseInt(atrib[2]));
-                            ruta.setOrigen_etiqueta(atrib[0]);
-                            ruta.setDestino_etiqueta(atrib[1]);
-                            lista_rutas.InsertInFinal(ruta);
-                            i++;
+                            while(i<datos.length){
+                                String[] atrib = datos[i].split(",");
+                                Ruta ruta = new Ruta(0,Integer.parseInt(atrib[2]));
+                                ruta.setOrigen_etiqueta(atrib[0]);
+                                ruta.setDestino_etiqueta(atrib[1]);
+                                lista_rutas.InsertInFinal(ruta);
+                                i++;
                             }
+                            if (i == datos.length) {break;}
+                        
 
                             }
                     }
@@ -149,19 +152,81 @@ public class Funciones {
             JOptionPane.showMessageDialog(null, ex);}
         
         
-            Grafo grafo = new Grafo(lista_almacenes.getSize());
-            Lista<Almacen> almacenes = new Lista<>();
-            
-            grafo.guardarAlmacenes(lista_almacenes, almacenes);
+            Grafo grafo = new Grafo();
+            grafo.guardarAlmacenes(lista_almacenes);
             grafo.setEsDirigido(true);
             grafo.guardarRutas(lista_rutas);
           
+            // Eliminar arrayListas despues
             ArrayListas arr_list = new ArrayListas(lista_almacenes, lista_rutas);
         
-            return arr_list;
+            return grafo;
    
       
       }
+      
+        public static void ActualizarRepositorio(Grafo grafo, File fichero){
+            if (fichero == null) {JOptionPane.showMessageDialog(null, "No ha seleccionado ningún archivo");} 
+            
+            else {
+            
+            String path = fichero.getAbsolutePath();
+            String infoAlm = "";
+            String infoRut = "";
+            String amazontxt = "";
+            if (!grafo.isEmpty()){
+                
+                // En esta primera parte del algoritmo se obtiene la informacion de los almacenes
+                Lista<Almacen> listaDeAlmacenes = grafo.getListaAlm();
+                Nodo<Almacen> almacen = listaDeAlmacenes.getFirst();
+                infoAlm += "Almacenes;\n";
+                infoRut += "Rutas;\n";
+                for (int i = 0; i<listaDeAlmacenes.getSize(); i++){
+                    
+//                    Formato de almacen:
+//                    Almacen A:
+//                    Pantalla,3
+//                    RAM,2
+//                    Procesador,1;
+
+                    infoAlm += "Almacen "+almacen.getData().getNombre()+":\n";
+                    Lista<Producto> productos = almacen.getData().getProductos();
+                    Nodo<Producto> producto = productos.getFirst();
+                    for (int j = 0; j<productos.getSize();j++){
+                        if(producto.getpNext() == null){
+                           infoAlm += producto.getData().getNombre()+","+producto.getData().getCantidad()+";\n"; 
+                        }else{
+                            infoAlm += producto.getData().getNombre()+","+producto.getData().getCantidad()+"\n";
+                            
+                        }producto = producto.getpNext();
+                    }
+                    
+                    //Se recorren las listas de adyacencia para obtener las rutas
+                    
+                    Lista<Ruta> rutas = almacen.getData().getAdyacencia();
+                    Nodo<Ruta> ruta = rutas.getFirst();
+                    for (int a = 0; a<rutas.getSize(); a++){
+                        
+                        // A,B,10 Formato de ruta 
+                        
+                        infoRut+= ruta.getData().getOrigen_etiqueta()+","+ruta.getData().getDestino_etiqueta()+","+ruta.getData().getPeso()+"\n";
+                        ruta = ruta.getpNext();
+                    }
+                    almacen = almacen.getpNext();
+                }
+                amazontxt = infoAlm + infoRut;
+            }try{
+                PrintWriter pw = new PrintWriter(path);
+                pw.print(amazontxt);
+                pw.close();
+                JOptionPane.showMessageDialog(null, "Guardado exitoso");
+
+            }catch(Exception err){
+                JOptionPane.showMessageDialog(null, err);
+            }
+            
+            }
+          }
        
       
       

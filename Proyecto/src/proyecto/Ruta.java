@@ -12,9 +12,9 @@ public class Ruta {
     private String origen_etiqueta;
     private String destino_etiqueta;
     private int destino;
-    private double peso;
+    private int peso;
 
-    public Ruta(int destino, double peso) {
+    public Ruta(int destino, int peso) {
     
         this.destino = destino;
         this.peso = peso;
@@ -43,14 +43,14 @@ public class Ruta {
     /**
      * @return the peso
      */
-    public double getPeso() {
+    public int getPeso() {
         return peso;
     }
 
     /**
      * @param peso the peso to set
      */
-    public void setPeso(double peso) {
+    public void setPeso(int peso) {
         this.peso = peso;
     } 
 

@@ -88,9 +88,10 @@ public class Lista<T> {
         }else{
             
             Last.setpNext(nuevo);
-            Last= nuevo;  
+            Last= nuevo; 
+            size++;
         }
-        size++;
+
     }
 
 
@@ -134,6 +135,20 @@ public class Lista<T> {
         temp = temp.getpNext();
         }
         return almacenes_string;
-    }    
+    }  
+    
+        public String nombresAlmacenes(){
+        Nodo<Almacen> temp = First;
+        String almacenes_string = "";
+       if(this.isEmpty()){
+        almacenes_string = "";
+        }
+        while(temp != null){
+        String object = temp.getData().nombres();
+        almacenes_string = almacenes_string + object;
+        temp = temp.getpNext();
+        }
+        return almacenes_string;
+    }
     
 }

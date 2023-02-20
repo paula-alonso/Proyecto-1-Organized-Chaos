@@ -13,53 +13,56 @@ import javax.swing.JOptionPane;
 public class Grafo {
     private boolean EsDirigido;
     private int NumAlmacenes;
-    private int NumMaxVert;
-    private Almacen[] tablaAdy;
+    private Lista<Almacen> listaAlm;
 
-    public Grafo(int maxVert) {
+    public Grafo() {
         this.EsDirigido = EsDirigido;
         this.NumAlmacenes = 0;
-        this.NumMaxVert = maxVert;
-        this.tablaAdy = new Almacen[maxVert];
+        this.listaAlm = new Lista<Almacen>();
+    }
+    
+    public boolean isEmpty(){
+        return NumAlmacenes == 0;
+    }
+    
+    // Busca el almacen por el nombre, si no lo encuentra o la lista de almacenes está vacia, retorna null
+    public Nodo<Almacen> BuscarAlmacen(String nombre){
+        if(!listaAlm.isEmpty()){
+            Nodo<Almacen> almacen = (Nodo<Almacen>) getListaAlm().getFirst();
+            for(int i = 0; i<getListaAlm().getSize(); i++){
+                if(almacen.getData().getNombre().equalsIgnoreCase(nombre)){
+                    return almacen;
+                }almacen = almacen.getpNext();
+            }return null;
+        }return null;
     }
     
      // Busca y devuelve el número de vértice, si no lo encuentra regresa -1
     public int numAlmacen(String nombre) {
         Almacen v = new Almacen(nombre);
-        boolean encontrado = false;
-        int i = 0;
-        for (; (i < NumAlmacenes) && !encontrado;){
-            encontrado = tablaAdy[i].equals(v);
-            if (!encontrado){
-                i++;
-            }
-        }if(NumAlmacenes > i){
-            return i;
+        Nodo<Almacen> encontrado = BuscarAlmacen(nombre);
+        if(encontrado != null){
+            int num = encontrado.getData().getNumvertice();
+            return num;
+        }else{
+            return -1;
         }
-        return -1;
     }
 
     // Crea un nuevo vértice
-    public void nuevoAlmacen (String nombre, Lista<Almacen> lista) {
+    public void nuevoAlmacen (Almacen almacen) {
+        String nombre = almacen.getNombre();
         boolean existe = false; 
-        if(numAlmacen(nombre) >= 0){
+        if(BuscarAlmacen(nombre)!= null){
             existe = true;
         }
         if (!existe){
-            Almacen v = new Almacen(nombre);
-            lista.InsertInFinal(v);
-            
-            tablaAdy[NumAlmacenes++] = v;
+            almacen.asigVert(NumAlmacenes);
+            listaAlm.InsertInFinal(almacen);
+            NumAlmacenes++;
         }
     } 
     
-    public Lista<Ruta> BuscarListaAdAlmacen(String a){
-        int posicionAlmacen = numAlmacen(a);
-        Almacen vertice = tablaAdy[posicionAlmacen];
-        Lista<Ruta> rutas = vertice.getAdyacencia();
-        return rutas;
-    }
-
     
      // Comprueba si dos vertices son adyacentes
     boolean adyacente(String a, String b){
@@ -69,28 +72,54 @@ public class Grafo {
         if(v1 < 0 || v2 < 0) {
             JOptionPane.showMessageDialog(null,"El vértice no existe");
         }
-        Lista<Ruta> rutas = BuscarListaAdAlmacen(a);
-        Nodo<Ruta> arco = (Nodo<Ruta>) rutas.getFirst();
-        for(int i = 0; i<rutas.getSize(); i++){
-            if (arco.getData().getDestino() == v2){
+        Nodo<Almacen> almacen = BuscarAlmacen(a);
+        Lista<Ruta> rutas = almacen.getData().getAdyacencia();
+        Nodo<Ruta> ruta = (Nodo<Ruta>) rutas.getFirst();
+        for(int i = 0; i<rutas.getSize()-1; i++){
+            if (ruta.getData().getDestino() == v2){
                 return true;
-            }arco = arco.getpNext();
+            }ruta = ruta.getpNext();
         }
             return false;
         }
     
-    public void AgregarRuta(String a, String b, double peso){
-        if(!adyacente(a,b)){
+    public void AgregarRuta(Ruta ruta){
+        String a = ruta.getOrigen_etiqueta();
+        String b = ruta.getDestino_etiqueta();
+        if(!adyacente(a, b)){
             int v1 = numAlmacen(a);
             int v2 = numAlmacen(b);
             if(v1 < 0 || v2 < 0) {
                 JOptionPane.showMessageDialog(null,"El vértice no existe");
-            }
-            Ruta ab = new Ruta(v2, peso);
-            Lista<Ruta> rutas = new Lista<>();
-            rutas.InsertInFinal(ab);  
+            }else{
+            Nodo<Almacen> almacen = BuscarAlmacen(a);
+            almacen.getData().getAdyacencia().InsertInFinal(ruta);
+            }  
         }
     }
+    
+    public void guardarAlmacenes(Lista<Almacen> lista){
+        if(lista.isEmpty()){
+            JOptionPane.showMessageDialog(null,"No hay almacenes guardados");
+            }else{
+            Nodo<Almacen> temp = (Nodo<Almacen>) lista.getFirst();
+            while(temp != null){
+            nuevoAlmacen(temp.getData());
+            temp = temp.getpNext();}
+        }
+    }     
+
+        public void guardarRutas(Lista<Ruta> lista){
+        Nodo<Ruta> temp = lista.getFirst();
+        if(lista.isEmpty()){
+            JOptionPane.showMessageDialog(null,"No se introdujo ninguna ruta");
+            }
+            while(temp != null){
+            Ruta ruta = temp.getData();
+            AgregarRuta(ruta);
+            temp = temp.getpNext();
+        }
+    }  
 
     /**
      * @return the NumAlmacenes
@@ -107,34 +136,6 @@ public class Grafo {
     }
 
     /**
-     * @return the NumMaxVert
-     */
-    public int getNumMaxVert() {
-        return NumMaxVert;
-    }
-
-    /**
-     * @param NumMaxVert the NumMaxVert to set
-     */
-    public void setNumMaxVert(int NumMaxVert) {
-        this.NumMaxVert = NumMaxVert;
-    }
-
-    /**
-     * @return the tablaAdy
-     */
-    public Almacen[] getTablaAdy() {
-        return tablaAdy;
-    }
-
-    /**
-     * @param tablaAdy the tablaAdy to set
-     */
-    public void setTablaAdy(Almacen[] tablaAdy) {
-        this.tablaAdy = tablaAdy;
-    }
-
-    /**
      * @return the EsDirigido
      */
     public boolean isEsDirigido() {
@@ -148,30 +149,20 @@ public class Grafo {
         this.EsDirigido = EsDirigido;
     }
     
-    public void guardarAlmacenes(Lista<Almacen> lista, Lista<Almacen> nueva_lista){
-        Nodo<Almacen> temp = lista.getFirst();
-        if(lista.isEmpty()){
-            JOptionPane.showMessageDialog(null,"No se introdujo ningún almacen");
-            }
-            while(temp != null){
-            nuevoAlmacen(temp.getData().getNombre(), nueva_lista);
-            temp = temp.getpNext();
-        }
-    }     
 
-        public void guardarRutas(Lista<Ruta> lista){
-        Nodo<Ruta> temp = lista.getFirst();
-        if(lista.isEmpty()){
-            JOptionPane.showMessageDialog(null,"No se introdujo ninguna ruta");
-            }
-            while(temp != null){
-            String a = temp.getData().getOrigen_etiqueta();
-            String b = temp.getData().getDestino_etiqueta();
-            double peso = temp.getData().getPeso();
-            AgregarRuta(a, b, peso);
-            temp = temp.getpNext();
-        }
-    }  
+    /**
+     * @return the listaAlm
+     */
+    public Lista<Almacen> getListaAlm() {
+        return listaAlm;
+    }
+
+    /**
+     * @param listaAlm the listaAlm to set
+     */
+    public void setListaAlm(Lista<Almacen> listaAlm) {
+        this.listaAlm = listaAlm;
+    }
 
     
 }

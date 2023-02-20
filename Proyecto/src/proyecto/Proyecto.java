@@ -15,10 +15,22 @@ public class Proyecto {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    
+    static File fichero = Funciones.FileChooser();
+    static Grafo grafo = Funciones.LeerTxt(fichero);
+    
+    
+    public void main(){
         // TODO code application logic here
-    File fichero = Funciones.FileChooser();
-    Funciones.LeerFichero(fichero);
+
+    Funciones.ActualizarRepositorio(grafo, fichero); 
+ 
     }
+    
+    public static Grafo getGrafo() {
+    return grafo;
+    }
+
+      
     
 }
