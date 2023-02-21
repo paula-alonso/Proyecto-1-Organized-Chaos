@@ -20,14 +20,6 @@ public class Ruta {
         this.destino_etiqueta = destino_etiqueta;
         this.peso = peso;
     }
-
-    public Ruta(String origen_etiqueta, String destino_etiqueta, int peso) {
-        this.origen_etiqueta = origen_etiqueta;
-        this.destino_etiqueta = destino_etiqueta;
-        this.destino = destino;
-        this.peso = peso;
-    }
-    
     
     
     public boolean equals(Object n){

@@ -147,7 +147,7 @@ public class Lista<T> {
         temp = temp.getpNext();
         }
         return almacenes_string;
-<<<<<<< HEAD
+
       
         }    
         
@@ -167,9 +167,7 @@ public class Lista<T> {
         return ady;
         }
     
-=======
-    }
-        
+
         public String nombresProductos(){
             Nodo<Producto> producto = First;
             String productos_string = "";
@@ -182,6 +180,13 @@ public class Lista<T> {
         }
         return productos_string;
         }
->>>>>>> 2ba8210e93c905ce7e03a8121e4da3ab589b05cf
-    
+
+
+
+
 }
+        
+
+
+    
+

@@ -234,7 +234,7 @@ public class Funciones {
 
           }
        
-<<<<<<< HEAD
+
       public static void AsignarAlmacenes(String[] array_almacenes, JComboBox combo_box) {
       
           
@@ -242,7 +242,7 @@ public class Funciones {
             combo_box.addItem(array_almacenes[i]); //Se asigna cada almacen a un item del combo box
                 
             }
-=======
+      }
 
     public static boolean ValidarNumero(String text) {
         try{
@@ -266,9 +266,9 @@ public class Funciones {
                 }
                 return null;
     }
->>>>>>> 2ba8210e93c905ce7e03a8121e4da3ab589b05cf
+
       
-      }
+    
       
       public static String RecorridoAncho(Grafo grafo){
        
