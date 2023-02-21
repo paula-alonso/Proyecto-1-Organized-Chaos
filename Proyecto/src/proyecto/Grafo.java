@@ -65,7 +65,7 @@ public class Grafo {
     
     
      // Comprueba si dos vertices son adyacentes
-    boolean adyacente(String a, String b){
+    public boolean adyacente(String a, String b){
         int v1, v2;
         v1 = numAlmacen(a);
         v2 = numAlmacen(b);
@@ -75,8 +75,8 @@ public class Grafo {
         Nodo<Almacen> almacen = BuscarAlmacen(a);
         Lista<Ruta> rutas = almacen.getData().getAdyacencia();
         Nodo<Ruta> ruta = (Nodo<Ruta>) rutas.getFirst();
-        for(int i = 0; i<rutas.getSize()-1; i++){
-            if (ruta.getData().getDestino() == v2){
+        for(int i = 0; i<rutas.getSize(); i++){
+            if (ruta.getData().getDestino_etiqueta().equalsIgnoreCase(b)){
                 return true;
             }ruta = ruta.getpNext();
         }

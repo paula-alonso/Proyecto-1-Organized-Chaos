@@ -4,6 +4,7 @@
  */
 package proyecto;
 
+import Ventanas.SeleccionProductos;
 import java.awt.Component;
 import java.io.BufferedReader;
 import java.io.File;
@@ -233,6 +234,7 @@ public class Funciones {
 
           }
        
+<<<<<<< HEAD
       public static void AsignarAlmacenes(String[] array_almacenes, JComboBox combo_box) {
       
           
@@ -240,6 +242,31 @@ public class Funciones {
             combo_box.addItem(array_almacenes[i]); //Se asigna cada almacen a un item del combo box
                 
             }
+=======
+
+    public static boolean ValidarNumero(String text) {
+        try{
+              int num = Integer.parseInt(text);
+              return true;
+          }catch(Exception e){
+              JOptionPane.showMessageDialog(null, "Introduzca una cifra válida");
+          }return false;
+    }
+    
+    public static Producto BuscarProducto(Lista<Producto> lista, String nombre){
+            Nodo<Producto> producto = (Nodo<Producto>) lista.getFirst();
+                
+                //Busca el nodo que contiene el producto en la lista productos del almacen y le suma la cantidad agregada
+                
+                while(producto != null){
+                    if (producto.getData().getNombre().equalsIgnoreCase(nombre)){
+                        return producto.getData();
+                    }
+                    producto = producto.getpNext();
+                }
+                return null;
+    }
+>>>>>>> 2ba8210e93c905ce7e03a8121e4da3ab589b05cf
       
       }
       

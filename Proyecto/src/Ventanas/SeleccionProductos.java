@@ -5,22 +5,26 @@
 package Ventanas;
 
 import java.awt.Color;
+import proyecto.Lista;
+import proyecto.Nodo;
+import proyecto.Producto;
 
 /**
  *
- * @author marie
+ * @author alons
  */
-public class Seleccion1 extends javax.swing.JFrame {
+public class SeleccionProductos extends javax.swing.JFrame {
 
     /**
-     * Creates new form Seleccion
+     * Creates new form SeleccionProductos
      */
-    public Seleccion1() {
+    public SeleccionProductos() {
         initComponents();
-        this.setLocationRelativeTo(null); // centrar pantalla
-        this.getContentPane().setBackground(Color.WHITE); // cambiar el color de fondo        
+        this.setLocationRelativeTo(null);
+        this.getContentPane().setBackground(Color.WHITE); // cambiar el color de fondo 
     }
-   
+    
+    public static Lista<Producto> productos;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -31,21 +35,12 @@ public class Seleccion1 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        SeleccionBox = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
         OK = new javax.swing.JButton();
         Cancelar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        ProductoBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        SeleccionBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Almacén", "Ruta" }));
-        SeleccionBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SeleccionBoxActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText("Selecciona una opción");
 
         OK.setBackground(new java.awt.Color(67, 163, 191));
         OK.setText("OK");
@@ -63,35 +58,39 @@ public class Seleccion1 extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Agregar:");
+
+        ProductoBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nuevo producto", "Producto existente" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(35, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(SeleccionBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34))
             .addGroup(layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(OK, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(53, 53, 53)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(ProductoBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(OK)
+                        .addGap(33, 33, 33)
+                        .addComponent(Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(SeleccionBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(ProductoBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(OK)
                     .addComponent(Cancelar))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addGap(26, 26, 26))
         );
 
         pack();
@@ -103,36 +102,24 @@ public class Seleccion1 extends javax.swing.JFrame {
     }//GEN-LAST:event_CancelarActionPerformed
 
     private void OKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OKActionPerformed
-        // TODO add your handling code here:
-        String seleccion = (String) SeleccionBox.getSelectedItem();
+        String seleccion = (String) ProductoBox.getSelectedItem();
         
-        String items = Menu.grafo.getListaAlm().nombresAlmacenes(); //Obtiene los nombres de los almacenes cargados
-        String[] items_split = items.split("\n"); //Se crea un array con cada nombre
-
-        if (seleccion.equalsIgnoreCase("almacén")) {
-            
-            new AgregarAlmacen().setVisible(true);
-            
-            
-            proyecto.Funciones.AsignarAlmacenes(items_split, AgregarAlmacen.Destino1);
-            proyecto.Funciones.AsignarAlmacenes(items_split, AgregarAlmacen.Destino2);
+        productos = Menu.grafo.BuscarAlmacen(Seleccion2.seleccionado).getData().getProductos();
+        
+        
+        if(seleccion.equalsIgnoreCase("nuevo producto")){
+            new GestionStockPN().setVisible(true);
+        }else{
+            new GestionStockPE().setVisible(true);
+            Nodo<Producto> producto = productos.getFirst();
+            for (int i=0; i<productos.getSize(); i++) {
+         
+                GestionStockPE.Productos.addItem(producto.getData().getNombre()); //Se asigna cada almacen a un item del combo box
+                producto = producto.getpNext();
+            }
         }
-        
-        else if (seleccion.equalsIgnoreCase("ruta")) {
-            
-            new AgregarRuta().setVisible(true);
-            
-            proyecto.Funciones.AsignarAlmacenes(items_split, AgregarRuta.Origen);
-            proyecto.Funciones.AsignarAlmacenes(items_split, AgregarRuta.Destino);
-        }               
-        
-        Menu.menu.setVisible(false);
         dispose();
     }//GEN-LAST:event_OKActionPerformed
-
-    private void SeleccionBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SeleccionBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -151,21 +138,20 @@ public class Seleccion1 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Seleccion1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SeleccionProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Seleccion1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SeleccionProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Seleccion1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SeleccionProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Seleccion1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SeleccionProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Seleccion1().setVisible(true);
+                new SeleccionProductos().setVisible(true);
             }
         });
     }
@@ -173,7 +159,7 @@ public class Seleccion1 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cancelar;
     private javax.swing.JButton OK;
-    private static javax.swing.JComboBox<String> SeleccionBox;
+    public static javax.swing.JComboBox<String> ProductoBox;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

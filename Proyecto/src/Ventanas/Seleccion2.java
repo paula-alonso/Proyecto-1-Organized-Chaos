@@ -20,6 +20,8 @@ public class Seleccion2 extends javax.swing.JFrame {
         this.setLocationRelativeTo(null); // centrar pantalla
         this.getContentPane().setBackground(Color.WHITE); // cambiar el color de fondo        
     }
+    
+    public static String seleccionado;
    
 
     /**
@@ -37,6 +39,12 @@ public class Seleccion2 extends javax.swing.JFrame {
         Cancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        AlmacenesBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AlmacenesBoxActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Seleccione un almacén");
 
@@ -72,7 +80,7 @@ public class Seleccion2 extends javax.swing.JFrame {
                         .addComponent(OK, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 43, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -97,9 +105,14 @@ public class Seleccion2 extends javax.swing.JFrame {
     }//GEN-LAST:event_CancelarActionPerformed
 
     private void OKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OKActionPerformed
-        // TODO add your handling code here:
-        new GestionStock().setVisible(true);
+        seleccionado = (String) AlmacenesBox.getSelectedItem();
+        new SeleccionProductos().setVisible(true);
+        dispose();
     }//GEN-LAST:event_OKActionPerformed
+
+    private void AlmacenesBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlmacenesBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AlmacenesBoxActionPerformed
 
     /**
      * @param args the command line arguments
