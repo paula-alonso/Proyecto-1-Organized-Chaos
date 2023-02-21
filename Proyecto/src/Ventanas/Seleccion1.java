@@ -108,22 +108,17 @@ public class Seleccion1 extends javax.swing.JFrame {
             
             new AgregarAlmacen().setVisible(true);
             
-            for (int i=0; i<items_split.length; i++) {
-                AgregarAlmacen.Destino1.addItem(items_split[i]); //Se asigna cada almacen a un item del combo box
-                AgregarAlmacen.Destino2.addItem(items_split[i]); 
-                
-            }
+            
+            proyecto.Funciones.AsignarAlmacenes(items_split, AgregarAlmacen.Destino1);
+            proyecto.Funciones.AsignarAlmacenes(items_split, AgregarAlmacen.Destino2);
         }
         
         else if (seleccion.equalsIgnoreCase("ruta")) {
             
             new AgregarRuta().setVisible(true);
             
-            for (int i=0; i<items_split.length; i++) {
-         
-                AgregarRuta.Origen.addItem(items_split[i]); //Se asigna cada almacen a un item del combo box
-                AgregarRuta.Destino.addItem(items_split[i]); 
-            }
+            proyecto.Funciones.AsignarAlmacenes(items_split, AgregarRuta.Origen);
+            proyecto.Funciones.AsignarAlmacenes(items_split, AgregarRuta.Destino);
         }               
         
         Menu.menu.setVisible(false);

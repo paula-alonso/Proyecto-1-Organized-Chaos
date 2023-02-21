@@ -86,12 +86,10 @@ public class Lista<T> {
         if (isEmpty()){
             this.InsertAtFirst(elem);
         }else{
-            
             Last.setpNext(nuevo);
-            Last= nuevo; 
-            size++;
+            Last= nuevo;
+            size++;    
         }
-
     }
 
 
@@ -149,6 +147,24 @@ public class Lista<T> {
         temp = temp.getpNext();
         }
         return almacenes_string;
-    }
+      
+        }    
+        
+        public String[] separarAdyacencias() {
+        String[] ady;
+        String ady_string = "";
+        Nodo<Ruta> temp = First;
+
+        while(temp != null){
+        String object = temp.getData().getDestino_etiqueta();
+        ady_string = ady_string + object + "\n";
+        temp = temp.getpNext();
+        }
+        
+        ady = ady_string.split("\n");
+        
+        return ady;
+        }
+    
     
 }

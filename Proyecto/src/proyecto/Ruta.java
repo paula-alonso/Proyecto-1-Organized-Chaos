@@ -14,9 +14,10 @@ public class Ruta {
     private int destino;
     private int peso;
 
-    public Ruta(int destino, int peso) {
-    
-        this.destino = destino;
+    public Ruta(String origen_etiqueta, String destino_etiqueta, int peso) {
+        
+        this.origen_etiqueta = origen_etiqueta;
+        this.destino_etiqueta = destino_etiqueta;
         this.peso = peso;
     }
     

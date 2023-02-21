@@ -60,7 +60,7 @@ public class Menu extends javax.swing.JFrame {
             .addGap(0, 73, Short.MAX_VALUE)
         );
 
-        Reporte.setBackground(new java.awt.Color(67, 163, 191));
+        Reporte.setBackground(new java.awt.Color(82, 193, 225));
         Reporte.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
         Reporte.setText("Reporte de disponibilidad");
         Reporte.addActionListener(new java.awt.event.ActionListener() {
@@ -69,7 +69,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        Cargar.setBackground(new java.awt.Color(67, 163, 191));
+        Cargar.setBackground(new java.awt.Color(82, 193, 225));
         Cargar.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
         Cargar.setText("Cargar datos");
         Cargar.addActionListener(new java.awt.event.ActionListener() {
@@ -78,7 +78,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        Actualizar.setBackground(new java.awt.Color(67, 163, 191));
+        Actualizar.setBackground(new java.awt.Color(82, 193, 225));
         Actualizar.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
         Actualizar.setText("Actualizar datos");
         Actualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -87,11 +87,11 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        Pedido.setBackground(new java.awt.Color(67, 163, 191));
+        Pedido.setBackground(new java.awt.Color(82, 193, 225));
         Pedido.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
         Pedido.setText("Realizar pedido");
 
-        Agregar.setBackground(new java.awt.Color(67, 163, 191));
+        Agregar.setBackground(new java.awt.Color(82, 193, 225));
         Agregar.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
         Agregar.setText(" Agregar Almacén/Ruta");
         Agregar.setComponentPopupMenu(jPopupMenu1);
@@ -101,7 +101,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        Gestion.setBackground(new java.awt.Color(67, 163, 191));
+        Gestion.setBackground(new java.awt.Color(82, 193, 225));
         Gestion.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
         Gestion.setText("Gestión de stock");
         Gestion.addActionListener(new java.awt.event.ActionListener() {
@@ -110,7 +110,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        MostrarGrafo.setBackground(new java.awt.Color(67, 163, 191));
+        MostrarGrafo.setBackground(new java.awt.Color(82, 193, 225));
         MostrarGrafo.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
         MostrarGrafo.setText("Mostrar grafo");
         MostrarGrafo.addActionListener(new java.awt.event.ActionListener() {
@@ -183,6 +183,8 @@ public class Menu extends javax.swing.JFrame {
     private void ReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReporteActionPerformed
         // TODO add your handling code here:
         new ReporteDisponibilidad().setVisible(true);
+        ReporteDisponibilidad.ReporteAncho.setText(Funciones.RecorridoAncho(grafo));
+        ReporteDisponibilidad.ReporteProfundidad.setText(Funciones.RecorridoProfundidad(grafo));
     }//GEN-LAST:event_ReporteActionPerformed
 
     private void MostrarGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarGrafoActionPerformed

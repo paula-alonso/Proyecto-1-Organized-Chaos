@@ -106,7 +106,7 @@
     <Component class="javax.swing.JButton" name="Reporte">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="bf" green="a3" red="43" type="rgb"/>
+          <Color blue="e1" green="c1" red="52" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Unicode MS" size="12" style="0"/>
@@ -120,7 +120,7 @@
     <Component class="javax.swing.JButton" name="Cargar">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="bf" green="a3" red="43" type="rgb"/>
+          <Color blue="e1" green="c1" red="52" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Unicode MS" size="12" style="0"/>
@@ -134,7 +134,7 @@
     <Component class="javax.swing.JButton" name="Actualizar">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="bf" green="a3" red="43" type="rgb"/>
+          <Color blue="e1" green="c1" red="52" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Unicode MS" size="12" style="0"/>
@@ -148,7 +148,7 @@
     <Component class="javax.swing.JButton" name="Pedido">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="bf" green="a3" red="43" type="rgb"/>
+          <Color blue="e1" green="c1" red="52" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Unicode MS" size="12" style="0"/>
@@ -159,7 +159,7 @@
     <Component class="javax.swing.JButton" name="Agregar">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="bf" green="a3" red="43" type="rgb"/>
+          <Color blue="e1" green="c1" red="52" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Unicode MS" size="12" style="0"/>
@@ -176,7 +176,7 @@
     <Component class="javax.swing.JButton" name="Gestion">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="bf" green="a3" red="43" type="rgb"/>
+          <Color blue="e1" green="c1" red="52" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Unicode MS" size="12" style="0"/>
@@ -190,7 +190,7 @@
     <Component class="javax.swing.JButton" name="MostrarGrafo">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="bf" green="a3" red="43" type="rgb"/>
+          <Color blue="e1" green="c1" red="52" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Unicode MS" size="12" style="0"/>

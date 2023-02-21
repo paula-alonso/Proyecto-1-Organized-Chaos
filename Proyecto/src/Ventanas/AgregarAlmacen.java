@@ -44,15 +44,15 @@ public class AgregarAlmacen extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         Origen1 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        Distancia1 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         Origen2 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         Destino2 = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
-        Distancia2 = new javax.swing.JTextField();
         Guardar = new javax.swing.JButton();
+        Distancia1 = new javax.swing.JSpinner();
+        Distancia2 = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Nuevo Almacén");
@@ -124,12 +124,6 @@ public class AgregarAlmacen extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
         jLabel6.setText("Distancia");
 
-        Distancia1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Distancia1ActionPerformed(evt);
-            }
-        });
-
         jLabel7.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
         jLabel7.setText("Ruta 2:");
 
@@ -149,12 +143,6 @@ public class AgregarAlmacen extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
         jLabel10.setText("Distancia");
 
-        Distancia2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Distancia2ActionPerformed(evt);
-            }
-        });
-
         Guardar.setBackground(new java.awt.Color(67, 163, 191));
         Guardar.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
         Guardar.setText("Procesar");
@@ -164,35 +152,44 @@ public class AgregarAlmacen extends javax.swing.JFrame {
             }
         });
 
+        Distancia1.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+        Distancia1.setOpaque(false);
+
+        Distancia2.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+        Distancia2.setOpaque(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(64, 64, 64)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(Origen2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(28, 28, 28)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(Destino2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(41, 41, 41)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(Guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(Distancia2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(Origen2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(28, 28, 28)
+                                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(Destino2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(35, 35, 35)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel6)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(Distancia1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel10)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(Distancia2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -205,33 +202,30 @@ public class AgregarAlmacen extends javax.swing.JFrame {
                                     .addGap(28, 28, 28)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(Destino1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(41, 41, 41)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(Distancia1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(Destino1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(78, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Volver, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(68, Short.MAX_VALUE))
+                        .addComponent(Volver, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(68, 68, 68))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addComponent(Header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addGap(30, 30, 30)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
+                .addGap(31, 31, 31)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Destino1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -249,7 +243,7 @@ public class AgregarAlmacen extends javax.swing.JFrame {
                     .addComponent(Origen2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Distancia2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Volver)
                     .addComponent(Guardar))
@@ -274,18 +268,10 @@ public class AgregarAlmacen extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Origen1ActionPerformed
 
-    private void Distancia1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Distancia1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Distancia1ActionPerformed
-
     private void Origen2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Origen2ActionPerformed
         // TODO add your handling code here:
 
     }//GEN-LAST:event_Origen2ActionPerformed
-
-    private void Distancia2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Distancia2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Distancia2ActionPerformed
 
     private void Destino1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Destino1ActionPerformed
         // TODO add your handling code here:
@@ -310,21 +296,38 @@ public class AgregarAlmacen extends javax.swing.JFrame {
         Boolean valid = true;
         String nombre = Nombre.getText();
         String destino1 = (String) Destino1.getSelectedItem();
-        String destino2 = (String) Destino2.getSelectedItem();        
-        String str_distancia1 = Distancia1.getText();
-        String str_distancia2 = Distancia2.getText();
+        String destino2 = (String) Destino2.getSelectedItem();  
+        
+        int distancia1 = (int) Distancia1.getValue();
+        int distancia2 = (int) Distancia2.getValue();
+
         String items = Menu.grafo.getListaAlm().nombresAlmacenes(); //Obtiene los nombres de los almacenes cargados
         
         if (!nombre.equalsIgnoreCase("") && items.contains(nombre)){ //Verifica que el nombre no se encuentre en uso
             JOptionPane.showMessageDialog(null, "El nombre ya se encuentra en uso");
             valid = false;
         } 
-        try {
-            double distancia1 = Double.parseDouble(str_distancia1);
-            double distancia2 = Double.parseDouble(str_distancia2);
+        
+        if (nombre.equalsIgnoreCase("")){
+            JOptionPane.showMessageDialog(null, "Introduzca un nombre para el almacen");
+            valid = false;
+        }
+        
+        if (destino1.equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(null, "Debe cargar al menos un almacén para acceder a esta función");
+            valid = false;
+        }
+        
+        
+        try{
+            
+            
+        
         } catch (Exception e) {
+        
             JOptionPane.showMessageDialog(null, "Introduzca una distancia válida");
             valid = false;
+        
         }
         
         
@@ -332,7 +335,15 @@ public class AgregarAlmacen extends javax.swing.JFrame {
             
             proyecto.Almacen almacen = new proyecto.Almacen(nombre);
             Menu.grafo.nuevoAlmacen(almacen);
+            
+            proyecto.Ruta ruta1 = new proyecto.Ruta(nombre, destino1, distancia1);
+            proyecto.Ruta ruta2 = new proyecto.Ruta(nombre, destino2, distancia2);
+            
+            Menu.grafo.AgregarRuta(ruta1);
+            Menu.grafo.AgregarRuta(ruta2);
+            
             dispose();
+            Menu.menu.setVisible(true);
             
         }
         
@@ -390,8 +401,8 @@ public class AgregarAlmacen extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JComboBox<String> Destino1;
     public static javax.swing.JComboBox<String> Destino2;
-    private javax.swing.JTextField Distancia1;
-    private javax.swing.JTextField Distancia2;
+    private javax.swing.JSpinner Distancia1;
+    private javax.swing.JSpinner Distancia2;
     private javax.swing.JButton Guardar;
     private static javax.swing.JPanel Header;
     private javax.swing.JTextField Nombre;

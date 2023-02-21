@@ -86,7 +86,7 @@ public class Grafo {
     public void AgregarRuta(Ruta ruta){
         String a = ruta.getOrigen_etiqueta();
         String b = ruta.getDestino_etiqueta();
-        if(!adyacente(a, b)){
+            if(!adyacente(a, b)){
             int v1 = numAlmacen(a);
             int v2 = numAlmacen(b);
             if(v1 < 0 || v2 < 0) {

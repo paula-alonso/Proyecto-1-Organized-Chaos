@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.PrintWriter;
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -133,7 +134,7 @@ public class Funciones {
                         i++;
                             while(i<datos.length){
                                 String[] atrib = datos[i].split(",");
-                                Ruta ruta = new Ruta(0,Integer.parseInt(atrib[2]));
+                                Ruta ruta = new Ruta(atrib[0],atrib[1],Integer.parseInt(atrib[2]));
                                 ruta.setOrigen_etiqueta(atrib[0]);
                                 ruta.setDestino_etiqueta(atrib[1]);
                                 lista_rutas.InsertInFinal(ruta);
@@ -232,9 +233,99 @@ public class Funciones {
 
           }
        
+      public static void AsignarAlmacenes(String[] array_almacenes, JComboBox combo_box) {
       
+          
+            for (int i=0; i<array_almacenes.length; i++) {
+            combo_box.addItem(array_almacenes[i]); //Se asigna cada almacen a un item del combo box
+                
+            }
       
+      }
       
+      public static String RecorridoAncho(Grafo grafo){
+       
+          
+        String visitado = "";
+        Cola<Almacen> cola = new Cola();
+        Lista<Almacen> lista_recorrido = new Lista<>();
+        
+        
+            Lista<Almacen> lista_almacenes = grafo.getListaAlm();
+            
+            if (!lista_almacenes.isEmpty()){
+            Almacen almacen = (Almacen) lista_almacenes.getFirst().getData();
+            
+            visitado = visitado + almacen.getNombre(); //String que almacena los almacenes visitados
+            cola.Encolar(almacen);
+            lista_recorrido.InsertInFinal(almacen);
+            
+            while (!cola.isEmpty()) {
+                
+                almacen = (Almacen) cola.getFirst().getData();
+                String[] adyacencias = almacen.getAdyacencia().separarAdyacencias(); //arroja las adyacencias en un array
+                
+                for (int i = 0; i<adyacencias.length;i++){
+                   if (!visitado.contains(adyacencias[i])){ //verifica que el almacen  adyacente no haya sido visitado
+                   Almacen aux = grafo.BuscarAlmacen(adyacencias[i]).getData();
+                   cola.Encolar(aux); //encola los almacenes adyacentes
+                   visitado = visitado + adyacencias[i]; //agrega el almacen visitado a un string
+                   
+                   lista_recorrido.InsertInFinal(aux);
+                   
+                   }
+                }
+                cola.Desencolar();
+            }
+            }
+            
+            String stock = lista_recorrido.print();
+            
+
+        return stock;
+    }
+      
+
+      public static String RecorridoProfundidad(Grafo grafo){
+       
+          
+        String visitado = "";
+        Pila<Almacen> pila = new Pila();
+        Lista<Almacen> lista_recorrido = new Lista<>();
+        
+        
+            Lista<Almacen> lista_almacenes = grafo.getListaAlm();
+            
+            if (!lista_almacenes.isEmpty()){
+            Almacen almacen = (Almacen) lista_almacenes.getFirst().getData();
+            
+            visitado = visitado + almacen.getNombre(); //String que almacena los almacenes visitados
+            pila.Apilar(almacen);
+            
+            
+            while (!pila.isEmpty()) {
+                
+                almacen = (Almacen) pila.getFirst().getData();
+                lista_recorrido.InsertInFinal(almacen);
+                pila.Desapilar();
+                String[] adyacencias = almacen.getAdyacencia().separarAdyacencias(); //arroja las adyacencias en un array
+                
+                for (int i = 0; i<adyacencias.length;i++){
+                   if (!visitado.contains(adyacencias[i])){ //verifica que el almacen  adyacente no haya sido visitado
+                   Almacen aux = grafo.BuscarAlmacen(adyacencias[i]).getData();
+                   pila.Apilar(aux); //apila los almacenes adyacentes
+                   visitado = visitado + adyacencias[i]; //agrega el almacen visitado a un string
+                   }
+                }
+                
+            }
+            }
+            
+            String stock = lista_recorrido.print();
+            
+
+        return stock;
+    }      
         
         
     }
