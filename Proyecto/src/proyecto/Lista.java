@@ -150,5 +150,18 @@ public class Lista<T> {
         }
         return almacenes_string;
     }
+        
+        public String nombresProductos(){
+            Nodo<Producto> producto = First;
+            String productos_string = "";
+           if(this.isEmpty()){
+               productos_string = "";
+            }
+            while(producto != null){  
+            productos_string += producto.getData().getNombre()+"\n";
+            producto = producto.getpNext();
+        }
+        return productos_string;
+        }
     
 }

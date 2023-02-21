@@ -4,6 +4,7 @@
  */
 package proyecto;
 
+import Ventanas.SeleccionProductos;
 import java.awt.Component;
 import java.io.BufferedReader;
 import java.io.File;
@@ -240,6 +241,20 @@ public class Funciones {
           }catch(Exception e){
               JOptionPane.showMessageDialog(null, "Introduzca una cifra válida");
           }return false;
+    }
+    
+    public static Producto BuscarProducto(Lista<Producto> lista, String nombre){
+            Nodo<Producto> producto = (Nodo<Producto>) lista.getFirst();
+                
+                //Busca el nodo que contiene el producto en la lista productos del almacen y le suma la cantidad agregada
+                
+                while(producto != null){
+                    if (producto.getData().getNombre().equalsIgnoreCase(nombre)){
+                        return producto.getData();
+                    }
+                    producto = producto.getpNext();
+                }
+                return null;
     }
       
       
