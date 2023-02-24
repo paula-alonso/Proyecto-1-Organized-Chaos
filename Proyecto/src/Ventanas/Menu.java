@@ -6,8 +6,13 @@ package Ventanas;
 
 import java.awt.Color;
 import java.io.File;
+import javax.swing.JOptionPane;
+import proyecto.Almacen;
 import proyecto.Funciones;
 import proyecto.Grafo;
+import proyecto.Lista;
+import proyecto.Nodo;
+import proyecto.Producto;
 
 
 /**
@@ -90,6 +95,11 @@ public class Menu extends javax.swing.JFrame {
         Pedido.setBackground(new java.awt.Color(82, 193, 225));
         Pedido.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
         Pedido.setText("Realizar pedido");
+        Pedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PedidoActionPerformed(evt);
+            }
+        });
 
         Agregar.setBackground(new java.awt.Color(82, 193, 225));
         Agregar.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
@@ -211,6 +221,44 @@ public class Menu extends javax.swing.JFrame {
             Seleccion2.AlmacenesBox.addItem(items_split[i]); //Se asigna cada almacen a un item del combo box
         }
     }//GEN-LAST:event_GestionActionPerformed
+
+    private void PedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PedidoActionPerformed
+        if(!Menu.grafo.isEmpty()){
+        new RealizarPedido().setVisible(true);
+        String items = Menu.grafo.getListaAlm().nombresAlmacenes(); //Obtiene los nombres de los almacenes cargados
+        String[] items_split = items.split("\n"); //Se crea un array con cada nombre
+        String productosText = "";
+        Funciones.AsignarAlmacenes(items_split, RealizarPedido.AlmacenesBox);
+        
+        //la lista de productos vistos es la que se pondra en el text area
+        Lista<Producto> productosVistos = new Lista<Producto>();
+        for (int i = 0; i<items_split.length; i++){
+            Lista<Producto> productos = Menu.grafo.BuscarAlmacen(items_split[i]).getData().getProductos();
+            Nodo<Producto> productoNodo = (Nodo<Producto>) productos.getFirst();
+            for (int j = 0; j<productos.getSize(); j++){
+                String productoNombre = productoNodo.getData().getNombre();
+                Producto producto = Funciones.BuscarProducto(productosVistos, productoNombre);
+                
+                // se crea una copia del producto para no alterar el valor del producto original
+                Producto productoCopia = new Producto(productoNombre, productoNodo.getData().getCantidad());
+                if (producto != null){
+                    producto.setCantidad(producto.getCantidad()+ productoNodo.getData().getCantidad());
+                }else{
+                    productosVistos.InsertInFinal(productoCopia);
+                }
+                productoNodo = productoNodo.getpNext();
+            }
+        }
+        Nodo<Producto> mostrarP = (Nodo<Producto>) productosVistos.getFirst();
+        while (mostrarP != null){
+            productosText += mostrarP.getData().mostrar()+"\n";
+            mostrarP = mostrarP.getpNext();
+        }
+        RealizarPedido.pantalla.setText(productosText);
+        }else{
+            JOptionPane.showMessageDialog(null, "No hay datos registrados");
+        }
+    }//GEN-LAST:event_PedidoActionPerformed
 
     /**
      * @param args the command line arguments

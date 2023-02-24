@@ -13,12 +13,14 @@ public class Almacen {
     private int numvertice;
     private Lista<Producto> productos;
     private Lista<Ruta> adyacencia;
+    private Almacen prev;
 
     public Almacen(String nombre) {
         this.nombre = nombre;
         this.numvertice = -1;
         this.productos = new Lista<Producto> ();
         this.adyacencia = new Lista<Ruta>();
+        this.prev = null;
     }
     
     public boolean equals(Almacen n){    //Retorna true si dos valores son iguales 
@@ -98,6 +100,20 @@ public class Almacen {
     public String nombres(){
     String almacen_string =  nombre + "\n";
     return almacen_string;}    
+
+    /**
+     * @return the prev
+     */
+    public Almacen getPrev() {
+        return prev;
+    }
+
+    /**
+     * @param prev the prev to set
+     */
+    public void setPrev(Almacen prev) {
+        this.prev = prev;
+    }
     
     
 }

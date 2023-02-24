@@ -120,6 +120,15 @@ public class Grafo {
             temp = temp.getpNext();
         }
     }  
+        
+        public Almacen BuscarAlmacenNum(int numAlmacen){
+            Nodo<Almacen> almacen = (Nodo<Almacen>) listaAlm.getFirst();
+            while (almacen != null){
+                if (almacen.getData().getNumvertice() == numAlmacen){
+                    return almacen.getData();
+                }almacen = almacen.getpNext();
+            }return null;
+        }
 
     /**
      * @return the NumAlmacenes
