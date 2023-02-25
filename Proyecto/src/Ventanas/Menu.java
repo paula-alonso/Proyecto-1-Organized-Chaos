@@ -8,7 +8,7 @@ import java.awt.Color;
 import java.io.File;
 import proyecto.Funciones;
 import proyecto.Grafo;
-
+import Graficos.DemoGrafo;
 
 /**
  *
@@ -189,7 +189,10 @@ public class Menu extends javax.swing.JFrame {
 
     private void MostrarGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarGrafoActionPerformed
         // TODO add your handling code here:
-        new MostrarGrafo().setVisible(true);
+
+        DemoGrafo.mostrar(grafo);
+       
+  
     }//GEN-LAST:event_MostrarGrafoActionPerformed
 
     private void CargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarActionPerformed

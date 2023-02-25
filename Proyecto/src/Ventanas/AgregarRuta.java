@@ -221,11 +221,12 @@ public class AgregarRuta extends javax.swing.JFrame {
 
                         JOptionPane.showMessageDialog(null, "Ruta guardada exitosamente");
                         grafo.AgregarRuta(rutaNueva);
+                        grafo.getListaRutas().InsertInFinal(rutaNueva);
                     }else{
                         JOptionPane.showMessageDialog(null, "Esa ruta ya existe");
                     }
                 }else{
-                    JOptionPane.showMessageDialog(null, "Cantidad inválida");
+                    JOptionPane.showMessageDialog(null, "Distancia inválida");
                 }
             }
         

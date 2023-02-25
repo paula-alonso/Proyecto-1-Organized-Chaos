@@ -94,6 +94,12 @@ public class Ruta {
         String ruta = getOrigen_etiqueta() + "," + getDestino_etiqueta() + "," + String.valueOf(getPeso());
         return ruta;        
                 
+    } 
+    
+        public String etiquetas() {
+        String ruta = getOrigen_etiqueta() + "," + getDestino_etiqueta();
+        return ruta;        
+                
     }      
     
 }

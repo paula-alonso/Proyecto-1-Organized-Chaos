@@ -111,11 +111,11 @@ public class Lista<T> {
         Nodo<Ruta> temp = First;
         String object_string = "";
        if(this.isEmpty()){
-        object_string = "No data to show.";
+        object_string = "";
         }
         while(temp != null){
         String object = temp.getData().mostrar();
-        object_string = object_string + "\n" + object;
+        object_string = object_string + object+ "\n";
         temp = temp.getpNext();
         }
         return object_string;
@@ -180,8 +180,8 @@ public class Lista<T> {
         }
         return productos_string;
         }
-
-
+        
+        
 
 
 }

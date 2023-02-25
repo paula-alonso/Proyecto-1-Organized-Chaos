@@ -14,11 +14,13 @@ public class Grafo {
     private boolean EsDirigido;
     private int NumAlmacenes;
     private Lista<Almacen> listaAlm;
+    private Lista<Ruta> listaRutas;
 
     public Grafo() {
         this.EsDirigido = EsDirigido;
         this.NumAlmacenes = 0;
         this.listaAlm = new Lista<Almacen>();
+        this.listaRutas = new Lista<Ruta>();
     }
     
     public boolean isEmpty(){
@@ -162,6 +164,20 @@ public class Grafo {
      */
     public void setListaAlm(Lista<Almacen> listaAlm) {
         this.listaAlm = listaAlm;
+    }
+
+    /**
+     * @return the listaRutas
+     */
+    public Lista<Ruta> getListaRutas() {
+        return listaRutas;
+    }
+
+    /**
+     * @param listaRutas the listaRutas to set
+     */
+    public void setListaRutas(Lista<Ruta> listaRutas) {
+        this.listaRutas = listaRutas;
     }
 
     

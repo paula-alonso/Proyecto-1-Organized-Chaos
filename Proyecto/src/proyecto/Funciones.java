@@ -158,6 +158,8 @@ public class Funciones {
             grafo.guardarAlmacenes(lista_almacenes);
             grafo.setEsDirigido(true);
             grafo.guardarRutas(lista_rutas);
+            
+            grafo.setListaRutas(lista_rutas);
           
             // Eliminar arrayListas despues
             ArrayListas arr_list = new ArrayListas(lista_almacenes, lista_rutas);
@@ -303,6 +305,9 @@ public class Funciones {
                    }
                 }
                 cola.Desencolar();
+                
+                
+                
             }
             }
             
@@ -326,7 +331,7 @@ public class Funciones {
             if (!lista_almacenes.isEmpty()){
             Almacen almacen = (Almacen) lista_almacenes.getFirst().getData();
             
-            visitado = visitado + almacen.getNombre(); //String que almacena los almacenes visitados
+            visitado = visitado + almacen.getNombre() + ","; //String que almacena los almacenes visitados
             pila.Apilar(almacen);
             
             
@@ -341,7 +346,7 @@ public class Funciones {
                    if (!visitado.contains(adyacencias[i])){ //verifica que el almacen  adyacente no haya sido visitado
                    Almacen aux = grafo.BuscarAlmacen(adyacencias[i]).getData();
                    pila.Apilar(aux); //apila los almacenes adyacentes
-                   visitado = visitado + adyacencias[i]; //agrega el almacen visitado a un string
+                   visitado = visitado + adyacencias[i] + ","; //agrega el almacen visitado a un string
                    }
                 }
                 
