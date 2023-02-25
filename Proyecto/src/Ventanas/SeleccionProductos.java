@@ -40,7 +40,7 @@ public class SeleccionProductos extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         ProductoBox = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         OK.setBackground(new java.awt.Color(67, 163, 191));
         OK.setText("OK");

@@ -7,6 +7,7 @@ package Ventanas;
 import java.awt.Color;
 import java.io.File;
 import javax.swing.JOptionPane;
+import proyecto.Funciones;
 
 
 /**
@@ -41,10 +42,10 @@ public class AgregarAlmacen extends javax.swing.JFrame {
         Nombre = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        Destino1 = new javax.swing.JComboBox<>();
+        Origen1 = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        Origen1 = new javax.swing.JTextField();
+        Destino1 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -53,10 +54,10 @@ public class AgregarAlmacen extends javax.swing.JFrame {
         Destino2 = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         Guardar = new javax.swing.JButton();
-        Distancia1 = new javax.swing.JSpinner();
-        Distancia2 = new javax.swing.JSpinner();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
+        Distancia1 = new javax.swing.JTextField();
+        Distancia2 = new javax.swing.JTextField();
 
         jPanel2.setBackground(new java.awt.Color(51, 153, 255));
 
@@ -127,14 +128,14 @@ public class AgregarAlmacen extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
         jLabel3.setText("Almacen");
 
-        Destino1.addMouseListener(new java.awt.event.MouseAdapter() {
+        Origen1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Destino1MouseClicked(evt);
+                Origen1MouseClicked(evt);
             }
         });
-        Destino1.addActionListener(new java.awt.event.ActionListener() {
+        Origen1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Destino1ActionPerformed(evt);
+                Origen1ActionPerformed(evt);
             }
         });
 
@@ -144,10 +145,10 @@ public class AgregarAlmacen extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
         jLabel5.setText("Almacen origen");
 
-        Origen1.setEditable(false);
-        Origen1.addActionListener(new java.awt.event.ActionListener() {
+        Destino1.setEditable(false);
+        Destino1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Origen1ActionPerformed(evt);
+                Destino1ActionPerformed(evt);
             }
         });
 
@@ -182,12 +183,6 @@ public class AgregarAlmacen extends javax.swing.JFrame {
             }
         });
 
-        Distancia1.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
-        Distancia1.setOpaque(false);
-
-        Distancia2.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
-        Distancia2.setOpaque(false);
-
         jPanel4.setBackground(new java.awt.Color(51, 153, 255));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -213,6 +208,18 @@ public class AgregarAlmacen extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
+
+        Distancia1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Distancia1ActionPerformed(evt);
+            }
+        });
+
+        Distancia2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Distancia2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -250,26 +257,26 @@ public class AgregarAlmacen extends javax.swing.JFrame {
                                 .addComponent(Destino2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(Distancia2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Distancia2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Destino1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Origen1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(21, 21, 21)
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(Origen1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Destino1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(Distancia1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(Distancia1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addComponent(Header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -290,12 +297,12 @@ public class AgregarAlmacen extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Destino1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Origen1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Distancia1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Origen1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Destino1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Distancia1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -305,7 +312,7 @@ public class AgregarAlmacen extends javax.swing.JFrame {
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Origen2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Distancia2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Distancia2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Volver)
@@ -327,30 +334,30 @@ public class AgregarAlmacen extends javax.swing.JFrame {
         
     }//GEN-LAST:event_NombreActionPerformed
 
-    private void Origen1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Origen1ActionPerformed
+    private void Destino1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Destino1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Origen1ActionPerformed
+    }//GEN-LAST:event_Destino1ActionPerformed
 
     private void Origen2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Origen2ActionPerformed
         // TODO add your handling code here:
 
     }//GEN-LAST:event_Origen2ActionPerformed
 
-    private void Destino1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Destino1ActionPerformed
+    private void Origen1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Origen1ActionPerformed
         // TODO add your handling code here:
         
-    }//GEN-LAST:event_Destino1ActionPerformed
+    }//GEN-LAST:event_Origen1ActionPerformed
 
-    private void Destino1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Destino1MouseClicked
+    private void Origen1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Origen1MouseClicked
         // TODO add your handling code here:
 
-    }//GEN-LAST:event_Destino1MouseClicked
+    }//GEN-LAST:event_Origen1MouseClicked
 
     private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
         // TODO add your handling code here:
         String nombre = Nombre.getText();
        
-        Origen1.setText(nombre);
+        Destino1.setText(nombre);
         Origen2.setText(nombre);
     }//GEN-LAST:event_formMouseMoved
 
@@ -358,11 +365,18 @@ public class AgregarAlmacen extends javax.swing.JFrame {
         // TODO add your handling code here:\
         Boolean valid = true;
         String nombre = Nombre.getText();
-        String destino1 = (String) Destino1.getSelectedItem();
+        String origen1 = (String) Origen1.getSelectedItem();
         String destino2 = (String) Destino2.getSelectedItem();  
+        String str_distancia1 = Distancia1.getText();
+        String str_distancia2 = Distancia2.getText();
+        int distancia1 = 0;
+        int distancia2 = 0;
         
-        int distancia1 = (int) Distancia1.getValue();
-        int distancia2 = (int) Distancia2.getValue();
+        boolean numero = Funciones.ValidarNumero(str_distancia1); //confirma que sea un número
+        if (!numero) {valid = false;} else {distancia1 = Integer.parseInt(str_distancia1);}
+        
+        numero = Funciones.ValidarNumero(str_distancia2);
+        if (!numero) {valid = false;} else {distancia2 = Integer.parseInt(str_distancia2);}
 
         String items = Menu.grafo.getListaAlm().nombresAlmacenes(); //Obtiene los nombres de los almacenes cargados
         
@@ -371,35 +385,28 @@ public class AgregarAlmacen extends javax.swing.JFrame {
             valid = false;
         } 
         
-        if (nombre.equalsIgnoreCase("")){
+        if (nombre.equalsIgnoreCase("")){ //verifica que se introduzca un nombre
             JOptionPane.showMessageDialog(null, "Introduzca un nombre para el almacen");
             valid = false;
         }
         
-        if (destino1.equalsIgnoreCase("")) {
+        if (origen1.equalsIgnoreCase("")) { //verifica que haya información cargada en el programa
             JOptionPane.showMessageDialog(null, "Debe cargar al menos un almacén para acceder a esta función");
             valid = false;
         }
         
-        
-        try{
-            
-            
-        
-        } catch (Exception e) {
-        
-            JOptionPane.showMessageDialog(null, "Introduzca una distancia válida");
+        if (origen1.equalsIgnoreCase(destino2)) {
+            JOptionPane.showMessageDialog(null, "El almacén de origen no puede ser igual al almacen destino");
             valid = false;
-        
         }
         
-        
+
         if (valid) {
             
             proyecto.Almacen almacen = new proyecto.Almacen(nombre);
             Menu.grafo.nuevoAlmacen(almacen);
             
-            proyecto.Ruta ruta1 = new proyecto.Ruta(destino1, nombre, distancia1);
+            proyecto.Ruta ruta1 = new proyecto.Ruta(origen1, nombre, distancia1);
             proyecto.Ruta ruta2 = new proyecto.Ruta(nombre, destino2, distancia2);
             
             Menu.grafo.AgregarRuta(ruta1);
@@ -414,6 +421,14 @@ public class AgregarAlmacen extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_GuardarActionPerformed
+
+    private void Distancia1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Distancia1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Distancia1ActionPerformed
+
+    private void Distancia2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Distancia2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Distancia2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -465,14 +480,14 @@ public class AgregarAlmacen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static javax.swing.JComboBox<String> Destino1;
+    private javax.swing.JTextField Destino1;
     public static javax.swing.JComboBox<String> Destino2;
-    private javax.swing.JSpinner Distancia1;
-    private javax.swing.JSpinner Distancia2;
+    private javax.swing.JTextField Distancia1;
+    private javax.swing.JTextField Distancia2;
     private javax.swing.JButton Guardar;
     private static javax.swing.JPanel Header;
     private javax.swing.JTextField Nombre;
-    private javax.swing.JTextField Origen1;
+    public static javax.swing.JComboBox<String> Origen1;
     private javax.swing.JTextField Origen2;
     private javax.swing.JButton Volver;
     private javax.swing.JLabel jLabel1;

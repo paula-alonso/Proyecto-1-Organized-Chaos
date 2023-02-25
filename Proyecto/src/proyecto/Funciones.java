@@ -4,7 +4,7 @@
  */
 package proyecto;
 
-import Ventanas.SeleccionProductos;
+import Ventanas.Menu;
 import java.awt.Component;
 import java.io.BufferedReader;
 import java.io.File;
@@ -357,8 +357,80 @@ public class Funciones {
             
 
         return stock;
-    }      
-        
+    }   
+      
+      public static Camino Dijkstra (Grafo g, Nodo<Almacen> origen, Nodo<Almacen> destino){
+        //          //Usaremos un vector para guardar las distancias del nodo salida al resto
+        int[] distancia = new int[g.getNumAlmacenes()];
+      
+        //  booleano visto[n] 
+        boolean[] visto = new boolean[g.getNumAlmacenes()];
+        //  //vector de boleanos para controlar los vértices de los que ya tenemos la distancia mínima
+          //  //Inicializamos el vector con distancias iniciales
+          // Si un vector u es adyacente al origen se asigna el peso, si no se asigna infinito
+        Lista<Almacen> listaAlmacenes = g.getListaAlm();
+        Nodo<Almacen> nodo = (Nodo<Almacen>)listaAlmacenes.getFirst();
+        Nodo<Ruta> rutaO = (Nodo<Ruta>) origen.getData().getAdyacencia().getFirst();
+        for (int i = 0; i<origen.getData().getAdyacencia().getSize(); i++){
+            distancia[g.BuscarAlmacen(rutaO.getData().getDestino_etiqueta()).getData().getNumvertice()] = rutaO.getData().getPeso();
+            g.BuscarAlmacen(rutaO.getData().getDestino_etiqueta()).getData().setPrev(origen.getData());
+            rutaO = rutaO.getpNext();
+        }
+        for(int i = 0; i<distancia.length; i++){
+            if(distancia[i] == 0){
+                distancia[i] = Integer.MAX_VALUE;
+            }
+        }
+        // el primer nodo se marca como visitado porque es el origen
+        distancia[origen.getData().getNumvertice()] = 0;
+        visto[origen.getData().getNumvertice()] = true;
+
+        boolean x = VistosTodos(visto); // Si todos los nodos fueron visitados retorna true, sino false
+        while(!x){
+            int vertice = minimoValor(distancia, visto);//busca el valor minimo en la lista de distancias
+            visto[vertice] = true;
+            Lista<Ruta> rutasdeV = g.BuscarAlmacenNum(vertice).getAdyacencia();
+            Nodo<Ruta> rutaV = (Nodo<Ruta>) rutasdeV.getFirst();
+            for (int i = 0; i<rutasdeV.getSize(); i++){
+                int verticeDest = g.BuscarAlmacen(rutaV.getData().getDestino_etiqueta()).getData().getNumvertice();
+                if(distancia[verticeDest]>distancia[vertice]+rutaV.getData().getPeso()){
+                    distancia[verticeDest] = distancia[vertice]+rutaV.getData().getPeso();
+                    Menu.grafo.BuscarAlmacenNum(verticeDest).setPrev(Menu.grafo.BuscarAlmacenNum(vertice));
+                }rutaV = rutaV.getpNext();
+            }x = VistosTodos(visto);
+        }int NumAlmD = destino.getData().getNumvertice();
+        Lista recorrido = new Lista();
+        Almacen aux = destino.getData();
+        while(aux!=null){
+            recorrido.InsertInFinal(aux);
+            aux = aux.getPrev();
+        }
+        Camino camino = new Camino(distancia[NumAlmD],recorrido);
+        return camino;
+
+      }
+      
+      public static int minimoValor(int [] distancia, boolean [] visto){
+          int minVal = Integer.MAX_VALUE;
+          int Vertice = -1;
+          for (int i = 0; i<distancia.length; i++){
+              if (visto[i] == false && distancia[i]<minVal){
+                  minVal = distancia[i];
+                  Vertice = i;
+              }
+              
+          }
+          return Vertice;
+      }
+      
+      public static boolean VistosTodos(boolean[] visto){
+          boolean vistos = true;
+          for(int i = 0; i<visto.length; i++){
+              if (visto[i] == false){
+                  return false;
+              }
+          }return vistos;
+      }
         
     }
         

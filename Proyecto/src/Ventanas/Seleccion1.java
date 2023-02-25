@@ -36,7 +36,7 @@ public class Seleccion1 extends javax.swing.JFrame {
         OK = new javax.swing.JButton();
         Cancelar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         SeleccionBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Almacén", "Ruta" }));
         SeleccionBox.addActionListener(new java.awt.event.ActionListener() {
@@ -114,7 +114,7 @@ public class Seleccion1 extends javax.swing.JFrame {
             new AgregarAlmacen().setVisible(true);
             
             
-            proyecto.Funciones.AsignarAlmacenes(items_split, AgregarAlmacen.Destino1);
+            proyecto.Funciones.AsignarAlmacenes(items_split, AgregarAlmacen.Origen1);
             proyecto.Funciones.AsignarAlmacenes(items_split, AgregarAlmacen.Destino2);
         }
         

@@ -59,10 +59,12 @@ public class GestionStockPE extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel1.add(cantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 160, 90, -1));
 
         jLabel13.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Cantidad");
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, 59, 23));
 
@@ -74,6 +76,7 @@ public class GestionStockPE extends javax.swing.JFrame {
         jPanel1.add(Productos, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 155, -1));
 
         jLabel5.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Producto");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 89, 23));
 

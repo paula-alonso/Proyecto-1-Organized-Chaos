@@ -105,8 +105,8 @@
                               <Component id="Destino2" min="-2" pref="56" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="Distancia2" min="-2" pref="51" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="Distancia2" min="-2" pref="56" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -114,15 +114,15 @@
                                   <Component id="jLabel1" alignment="0" min="-2" pref="77" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="Destino1" min="-2" pref="56" max="-2" attributes="0"/>
+                              <Component id="Origen1" min="-2" pref="56" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="Origen1" min="-2" pref="52" max="-2" attributes="0"/>
+                              <Component id="Destino1" min="-2" pref="52" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                               <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="Distancia1" min="-2" pref="53" max="-2" attributes="0"/>
+                              <Component id="Distancia1" min="-2" pref="56" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -131,7 +131,7 @@
                       <Component id="Header" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="51" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -155,12 +155,12 @@
               <Component id="jLabel1" min="-2" pref="23" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="Destino1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="Origen1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel4" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
                   <Component id="jLabel5" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
                   <Component id="jLabel6" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
-                  <Component id="Distancia1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="Origen1" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                  <Component id="Destino1" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                  <Component id="Distancia1" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
               <Component id="jLabel7" min="-2" pref="23" max="-2" attributes="0"/>
@@ -171,7 +171,7 @@
                   <Component id="jLabel8" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
                   <Component id="Origen2" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                   <Component id="jLabel10" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
-                  <Component id="Distancia2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="Distancia2" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="62" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -245,15 +245,15 @@
         <Property name="text" type="java.lang.String" value="Almacen"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="Destino1">
+    <Component class="javax.swing.JComboBox" name="Origen1">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="Destino1MouseClicked"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Destino1ActionPerformed"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="Origen1MouseClicked"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Origen1ActionPerformed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -276,12 +276,12 @@
         <Property name="text" type="java.lang.String" value="Almacen origen"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="Origen1">
+    <Component class="javax.swing.JTextField" name="Destino1">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Origen1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Destino1ActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
@@ -357,22 +357,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GuardarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JSpinner" name="Distancia1">
-      <Properties>
-        <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-          <SpinnerModel initial="1" minimum="1" numberType="java.lang.Integer" stepSize="1" type="number"/>
-        </Property>
-        <Property name="opaque" type="boolean" value="false"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JSpinner" name="Distancia2">
-      <Properties>
-        <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-          <SpinnerModel initial="1" minimum="1" numberType="java.lang.Integer" stepSize="1" type="number"/>
-        </Property>
-        <Property name="opaque" type="boolean" value="false"/>
-      </Properties>
-    </Component>
     <Container class="javax.swing.JPanel" name="jPanel4">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -413,5 +397,15 @@
         </DimensionLayout>
       </Layout>
     </Container>
+    <Component class="javax.swing.JTextField" name="Distancia1">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Distancia1ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="Distancia2">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Distancia2ActionPerformed"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>

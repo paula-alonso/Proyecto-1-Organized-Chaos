@@ -46,10 +46,11 @@ public class GestionStockPN extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         Guardar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Nombre del producto");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 160, 120, 23));
 
@@ -109,6 +110,7 @@ public class GestionStockPN extends javax.swing.JFrame {
 
         getContentPane().add(Header, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 230, 40));
 
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         input.addActionListener(new java.awt.event.ActionListener() {
@@ -126,6 +128,7 @@ public class GestionStockPN extends javax.swing.JFrame {
         jPanel4.add(cantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 160, 80, -1));
 
         jLabel13.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Cantidad");
         jPanel4.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 160, 59, 23));
 
