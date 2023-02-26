@@ -4,6 +4,7 @@
  */
 package Ventanas;
 
+import Graficos.DemoGrafo;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import proyecto.Almacen;
@@ -149,26 +150,27 @@ public class RealizarPedido extends javax.swing.JFrame {
             }
             Almacen almacen = Menu.grafo.BuscarAlmacen((String) AlmacenesBox.getSelectedItem()).getData();
             Lista<Producto> productos = almacen.getProductos();
-            for ( int i = 0; i<pedido.length-1; i++){
+            for ( int i = 0; i<pedido.length; i++){
                 if(i%2 == 0){
                 Producto producto = Funciones.BuscarProducto(productos, pedido[i]);
+                int cantidad = Integer.parseInt(pedido[i+1]);
                 if(producto != null){
-                    int cantidad = Integer.parseInt(pedido[i+1]);
+                    
                     int resta = producto.getCantidad()-cantidad;
                     if(resta<0){
                         producto.setCantidad(0);
                         //llamar al algoritmo de la ruta mas corta
+                        Funciones.RutaCercana(pedido, i, 0-resta);
                     }else{
                         producto.setCantidad(resta);
                     }
                 }//Aqui va el algoritmo de la ruta mas corta
                 else{
-                    Camino camino = Funciones.Dijkstra(Menu.grafo, Menu.grafo.BuscarAlmacen((String) AlmacenesBox.getSelectedItem()), Menu.grafo.BuscarAlmacen("D"));
-                    camino.MostrarCamino();
+                    Funciones.RutaCercana(pedido, i, cantidad);
+                    }
                 }
-                }
-                
-            }JOptionPane.showMessageDialog(null, "Pedido exitoso");
+            }JOptionPane.showMessageDialog(null, "Operación finalizada");
+            Menu.menu.setVisible(true);
             dispose();
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, "Datos inválidos");

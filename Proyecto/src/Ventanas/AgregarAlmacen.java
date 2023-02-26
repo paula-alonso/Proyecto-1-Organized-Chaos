@@ -380,7 +380,7 @@ public class AgregarAlmacen extends javax.swing.JFrame {
 
         String items = Menu.grafo.getListaAlm().nombresAlmacenes(); //Obtiene los nombres de los almacenes cargados
         
-        if (!nombre.equalsIgnoreCase("") && items.contains(nombre)){ //Verifica que el nombre no se encuentre en uso
+        if (!nombre.equalsIgnoreCase("") && items.contains(nombre.toUpperCase())){ //Verifica que el nombre no se encuentre en uso
             JOptionPane.showMessageDialog(null, "El nombre ya se encuentra en uso");
             valid = false;
         } 
@@ -395,7 +395,7 @@ public class AgregarAlmacen extends javax.swing.JFrame {
             valid = false;
         }
         
-        if (origen1.equalsIgnoreCase(destino2)) {
+        if (origen1.equalsIgnoreCase(destino2) && !origen1.equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(null, "El almacén de origen no puede ser igual al almacen destino");
             valid = false;
         }

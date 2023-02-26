@@ -11,19 +11,25 @@ package proyecto;
 public class Camino {
     private int distancia;
     private Lista<Almacen> almacenes;
+    private Lista<Ruta> rutas;
 
     public Camino(int distancia, Lista<Almacen> almacenes) {
         this.distancia = distancia;
         this.almacenes = almacenes;
+        this.rutas = rutas;
     }
 
-    public void MostrarCamino(){
+    public String MostrarCamino(){
         Nodo<Almacen> almacen = almacenes.getFirst();
+        String str_almacenes = "Ruta:\n";
+        String str_distancia = "";
         while(almacen != null){
-            System.out.println(almacen.getData().getNombre());
+            str_almacenes += almacen.getData().getNombre() + "<-";
             almacen = almacen.getpNext();
         }
-        System.out.println(distancia);
+        str_distancia = String.valueOf(distancia);
+        str_almacenes += "\nDistancia: " + str_distancia;
+        return str_almacenes;
     }
     /**
      * @return the distancia
@@ -54,5 +60,9 @@ public class Camino {
     }
     
     
-    
+    public Lista<Ruta> getRutas() {
+        return rutas;
+    }
+
+      
 }

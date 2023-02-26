@@ -11,10 +11,14 @@ import javax.swing.JOptionPane;
 import org.graphstream.graph.*;
 import org.graphstream.graph.implementations.*;
 import org.graphstream.ui.view.Viewer;
+import proyecto.Camino;
 import proyecto.Grafo;
+import proyecto.Lista;
+import proyecto.Nodo;
+import proyecto.Ruta;
     
 public class DemoGrafo {
-    public static void mostrar(Grafo grafo) {
+    public static void mostrar(String almacenes, String rutas) {
         
         Graph graph = new SingleGraph("Gráfico");
         graph.setStrict(false);
@@ -25,7 +29,7 @@ public class DemoGrafo {
                 "org.graphstream.ui.j2dviewer.J2DGraphRenderer");
        
         
-        String almacenes = grafo.getListaAlm().nombresAlmacenes();
+        
      
         
         if (!almacenes.equalsIgnoreCase("")) {
@@ -53,9 +57,9 @@ public class DemoGrafo {
         node.setAttribute("ui.label", node.getId());
         }
         
-        String rutas = grafo.getListaRutas().printRutas();
+        
 
-        if (!almacenes.equalsIgnoreCase("")) {
+        if (!rutas.equalsIgnoreCase("")) {
             
         String[] rutas_split = rutas.split("\n"); 
         
@@ -79,6 +83,7 @@ public class DemoGrafo {
         JOptionPane.showMessageDialog(null,"No hay almacenes para mostrar");
         }
     }
+    
 }
 
   

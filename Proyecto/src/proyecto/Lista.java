@@ -92,6 +92,20 @@ public class Lista<T> {
         }
     }
 
+    public Ruta BuscarRuta(String origen, String destino){
+        Nodo<Ruta> temp = First;
+        if(this.isEmpty()){
+        
+        }else{
+        for (int i = 0; i < this.getSize(); i++) {
+            if (temp.getData().getOrigen_etiqueta().equalsIgnoreCase(origen) && temp.getData().getDestino_etiqueta().equalsIgnoreCase(destino)){
+                return temp.getData();
+            }
+            temp = temp.getpNext();
+        }
+        }
+        return null;
+    }        
 
     public String printProductos(){
         Nodo<Producto> temp = First;

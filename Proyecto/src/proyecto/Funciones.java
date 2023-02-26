@@ -4,7 +4,9 @@
  */
 package proyecto;
 
+import Graficos.DemoGrafo;
 import Ventanas.Menu;
+import static Ventanas.RealizarPedido.AlmacenesBox;
 import java.awt.Component;
 import java.io.BufferedReader;
 import java.io.File;
@@ -180,7 +182,7 @@ public class Funciones {
             String infoAlm = "";
             String infoRut = "";
             String amazontxt = "";
-            if (!grafo.isEmpty()){
+                if (!grafo.isEmpty()){
                 
                 // En esta primera parte del algoritmo se obtiene la informacion de los almacenes
                 Lista<Almacen> listaDeAlmacenes = grafo.getListaAlm();
@@ -221,7 +223,7 @@ public class Funciones {
                     almacen = almacen.getpNext();
                 }
                 amazontxt = infoAlm + infoRut;
-            }try{
+            try{
                 PrintWriter pw = new PrintWriter(path);
                 pw.print(amazontxt);
                 pw.close();
@@ -230,8 +232,7 @@ public class Funciones {
             }catch(Exception err){
                 JOptionPane.showMessageDialog(null, err);
             }
-
-            
+                } else {JOptionPane.showMessageDialog(null, "No hay datos para guardar");}
             }
 
           }
@@ -370,7 +371,7 @@ public class Funciones {
           // Si un vector u es adyacente al origen se asigna el peso, si no se asigna infinito
         Lista<Almacen> listaAlmacenes = g.getListaAlm();
         Nodo<Almacen> nodo = (Nodo<Almacen>)listaAlmacenes.getFirst();
-        Nodo<Ruta> rutaO = (Nodo<Ruta>) origen.getData().getAdyacencia().getFirst();
+        Nodo<Ruta> rutaO = (Nodo<Ruta>) origen.getData().getAdyacencia().getFirst();        
         for (int i = 0; i<origen.getData().getAdyacencia().getSize(); i++){
             distancia[g.BuscarAlmacen(rutaO.getData().getDestino_etiqueta()).getData().getNumvertice()] = rutaO.getData().getPeso();
             g.BuscarAlmacen(rutaO.getData().getDestino_etiqueta()).getData().setPrev(origen.getData());
@@ -384,7 +385,7 @@ public class Funciones {
         // el primer nodo se marca como visitado porque es el origen
         distancia[origen.getData().getNumvertice()] = 0;
         visto[origen.getData().getNumvertice()] = true;
-
+        
         boolean x = VistosTodos(visto); // Si todos los nodos fueron visitados retorna true, sino false
         while(!x){
             int vertice = minimoValor(distancia, visto);//busca el valor minimo en la lista de distancias
@@ -402,7 +403,7 @@ public class Funciones {
         Lista recorrido = new Lista();
         Almacen aux = destino.getData();
         while(aux!=null){
-            recorrido.InsertInFinal(aux);
+            recorrido.InsertInFinal(aux); 
             aux = aux.getPrev();
         }
         Camino camino = new Camino(distancia[NumAlmD],recorrido);
@@ -431,6 +432,55 @@ public class Funciones {
               }
           }return vistos;
       }
+      
+                 public static void RutaCercana(String[] pedido, int i, int cantidad) {
+         
+                    Nodo<Almacen> seleccion = Menu.grafo.BuscarAlmacen((String) AlmacenesBox.getSelectedItem());
+                    Camino camino = null;
+                    Producto producto = null;
+                    Nodo<Almacen>  temp = Menu.grafo.getListaAlm().getFirst();
+                    for (int j=0;j<Menu.grafo.getListaAlm().getSize();j++) {
+                        producto = Funciones.BuscarProducto(temp.getData().getProductos(), pedido[i]);
+                        if (producto!= null && !seleccion.getData().equals(temp.getData())) {
+                        Camino caminoAux = Funciones.Dijkstra(Menu.grafo, temp, seleccion);
+                            if ((camino==null || caminoAux.getDistancia() < camino.getDistancia()) && producto.getCantidad()!=0){
+                                camino = caminoAux;
+                            }
+                        }
+                        temp = temp.getpNext();
+                    }
+                        if (camino!=null) {
+                        JOptionPane.showMessageDialog(null, "El almacen seleccionado no cuenta con suficiente stock del producto solicitado.\nSe buscó en el almacén  más cercano:\n"+camino.MostrarCamino());
+                        
+                        
+                        String almacenes = camino.getAlmacenes().nombresAlmacenes();
+                        String[] alm_split = almacenes.split("\n");
+                        
+                        Lista<Ruta> lista_rutas = new Lista<Ruta>();
+        
+                        for (int k=0;k<alm_split.length-1;k++) {
+                        Ruta ruta = Menu.grafo.getListaRutas().BuscarRuta(alm_split[k+1], alm_split[k]);
+                        lista_rutas.InsertInFinal(ruta);
+                        }
+
+                        String rutas = lista_rutas.printRutas();
+                        
+                        DemoGrafo.mostrar(almacenes, rutas);
+                        
+                        Almacen almacen_destino =(Almacen) camino.getAlmacenes().getLast().getData();
+                        producto = Funciones.BuscarProducto(almacen_destino.getProductos(), pedido[i]);
+                        
+                        producto.setCantidad(producto.getCantidad()-cantidad);
+                            if (producto.getCantidad()<0){
+                                JOptionPane.showMessageDialog(null, "No hay suficiente stock del producto solicitado en el almacén más cercano. Faltante: " + String.valueOf(0-producto.getCantidad()));
+                                producto.setCantidad(0);
+                            }
+                            
+                            
+                        } else {
+                        JOptionPane.showMessageDialog(null, "No hay suficiente stock del producto solicitado");
+                        }
+     }
         
     }
         

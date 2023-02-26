@@ -53,6 +53,7 @@ public class Menu extends javax.swing.JFrame {
         MostrarGrafo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Amazon Prime");
 
         javax.swing.GroupLayout HeaderLayout = new javax.swing.GroupLayout(Header);
         Header.setLayout(HeaderLayout);
@@ -200,8 +201,11 @@ public class Menu extends javax.swing.JFrame {
 
     private void MostrarGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarGrafoActionPerformed
         // TODO add your handling code here:
+        
+        String almacenes = grafo.getListaAlm().nombresAlmacenes();
+        String rutas = grafo.getListaRutas().printRutas();
 
-        DemoGrafo.mostrar(grafo);
+        DemoGrafo.mostrar(almacenes, rutas);
        
   
     }//GEN-LAST:event_MostrarGrafoActionPerformed
@@ -210,25 +214,42 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         
             File fichero = Funciones.FileChooser();
+            if (grafo.isEmpty()) {
             grafo = Funciones.LeerTxt(fichero);
-            
+            } else {
+            int dialogResult = JOptionPane.showConfirmDialog(null, "¿Desea actualizar los datos?");
+                if (dialogResult == JOptionPane.YES_OPTION) {
+                Funciones.ActualizarRepositorio(grafo, fichero);
+                grafo = Funciones.LeerTxt(fichero);
+                }
+                else {
+                grafo = Funciones.LeerTxt(fichero);
+                }
+            }
  
     }//GEN-LAST:event_CargarActionPerformed
 
     private void GestionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GestionActionPerformed
         // TODO add your handling code here:
-        new Seleccion2().setVisible(true);
-        String items = Menu.grafo.getListaAlm().nombresAlmacenes(); //Obtiene los nombres de los almacenes cargados
-        String[] items_split = items.split("\n"); //Se crea un array con cada nombre
+        
+        if (!Menu.grafo.getListaAlm().isEmpty()) {
+            new Seleccion2().setVisible(true);
+            String items = Menu.grafo.getListaAlm().nombresAlmacenes(); //Obtiene los nombres de los almacenes cargados
+            String[] items_split = items.split("\n"); //Se crea un array con cada nombre
 
-        for (int i=0; i<items_split.length; i++) {
-            Seleccion2.AlmacenesBox.addItem(items_split[i]); //Se asigna cada almacen a un item del combo box
+            for (int i=0; i<items_split.length; i++) {
+                Seleccion2.AlmacenesBox.addItem(items_split[i]); //Se asigna cada almacen a un item del combo box
+            }
+        
+        } else {
+            JOptionPane.showMessageDialog(null, "No hay datos registrados");
         }
     }//GEN-LAST:event_GestionActionPerformed
 
     private void PedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PedidoActionPerformed
         if(!Menu.grafo.isEmpty()){
         new RealizarPedido().setVisible(true);
+        menu.setVisible(false);
         String items = Menu.grafo.getListaAlm().nombresAlmacenes(); //Obtiene los nombres de los almacenes cargados
         String[] items_split = items.split("\n"); //Se crea un array con cada nombre
         String productosText = "";
