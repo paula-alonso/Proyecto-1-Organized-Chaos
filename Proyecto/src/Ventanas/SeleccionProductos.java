@@ -11,7 +11,7 @@ import proyecto.Producto;
 
 /**
  *
- * @author alons
+ * @author Paula Alonso y Marielena Ginez
  */
 public class SeleccionProductos extends javax.swing.JFrame {
 
@@ -100,8 +100,13 @@ public class SeleccionProductos extends javax.swing.JFrame {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_CancelarActionPerformed
-
+            /**
+            * Metodo para seleccionar producto nuevo o producto existente
+            * @param evt
+            */
     private void OKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OKActionPerformed
+                
+        
         String seleccion = (String) ProductoBox.getSelectedItem();
         
         productos = Menu.grafo.BuscarAlmacen(Seleccion2.seleccionado).getData().getProductos();

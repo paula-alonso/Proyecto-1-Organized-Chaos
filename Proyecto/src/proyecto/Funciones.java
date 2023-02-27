@@ -17,8 +17,8 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author marie
+ * Esta clase contiene las funciones utilizadas en el programa
+ * @author Paula Alonso y Marielena Ginez
  */
 public class Funciones {
     
@@ -39,6 +39,10 @@ public class Funciones {
    
    }
    
+     /**
+     * Metodo leer fichero
+     * @param archivo Fichero
+     */
    public static void LeerFichero(File archivo) {
        
       if (archivo == null) {JOptionPane.showMessageDialog(null, "No ha seleccionado ningún archivo");} 
@@ -74,6 +78,13 @@ public class Funciones {
       }
       }
    }
+   
+   
+     /**
+     * Metodo para leer el txt
+     * @param archivo Archivo txt
+     * @return grafo Grafo con los datos cargados
+     */
 
       public static Grafo LeerTxt(File archivo){
 
@@ -163,13 +174,18 @@ public class Funciones {
             
             grafo.setListaRutas(lista_rutas);
           
-            // Eliminar arrayListas despues
-            ArrayListas arr_list = new ArrayListas(lista_almacenes, lista_rutas);
         
             return grafo;
    
       
       }
+      
+      
+    /**
+     * Metodo para actualizar los datos
+     * @param grafo Grafo
+     * @param fichero Archivo txt
+     */
       
         public static void ActualizarRepositorio(Grafo grafo, File fichero){
 
@@ -237,6 +253,12 @@ public class Funciones {
 
           }
        
+        
+    /**
+     * Metodo para asignar almacenes a un ComboBox
+     * @param array_almacenes Almacenes disponibles
+     * @param combo_box ComboBox a asignar
+     */
 
       public static void AsignarAlmacenes(String[] array_almacenes, JComboBox combo_box) {
       
@@ -246,6 +268,12 @@ public class Funciones {
                 
             }
       }
+      
+    /**
+     * Metodo para validar que un input sea un numero valido
+     * @param text Texto a validar
+     * @return boolean Retorna si el numero es valido
+     */
 
     public static boolean ValidarNumero(String text) {
         try{
@@ -255,6 +283,13 @@ public class Funciones {
               JOptionPane.showMessageDialog(null, "Introduzca una cifra válida");
           }return false;
     }
+    
+     /**
+     * Metodo para buscar productos en una lista de productos
+     * @param lista Lista de productos
+     * @param nombre Nombre del producto
+     * @return producto.getData() retorna el producto encontrado
+     */
     
     public static Producto BuscarProducto(Lista<Producto> lista, String nombre){
             Nodo<Producto> producto = (Nodo<Producto>) lista.getFirst();
@@ -271,7 +306,11 @@ public class Funciones {
     }
 
       
-    
+     /**
+     * Metodo para hacer el Recorrido en Ancho
+     * @param grafo Grafo
+     * @return stock Stock impreso com el recorrido indicado
+     */
       
       public static String RecorridoAncho(Grafo grafo){
        
@@ -318,6 +357,12 @@ public class Funciones {
         return stock;
     }
       
+    /**
+     * Metodo para hacer el Recorrido en Profundidad
+     * @param grafo Grafo
+     * @return stock Stock impreso con el recorrido indicado
+     */
+      
 
       public static String RecorridoProfundidad(Grafo grafo){
        
@@ -359,6 +404,14 @@ public class Funciones {
 
         return stock;
     }   
+      
+    /**
+     * Metodo para buscar la ruta mas corta con el algoritmo de Dijkstra
+     * @param g Grafo
+     * @param origen Almacen origen
+     * @param destino Almacen destino
+     * @return camino Camino mas corto
+     */
       
       public static Camino Dijkstra (Grafo g, Nodo<Almacen> origen, Nodo<Almacen> destino){
         //          //Usaremos un vector para guardar las distancias del nodo salida al resto
@@ -411,6 +464,13 @@ public class Funciones {
 
       }
       
+      /**
+     * Metodo para buscar la distancia minima
+     * @param distancia Array de distancias
+     * @param  visto Array de vertices 
+     * @return Vertice retorna el vertice con la distancia minima
+     */
+      
       public static int minimoValor(int [] distancia, boolean [] visto){
           int minVal = Integer.MAX_VALUE;
           int Vertice = -1;
@@ -424,6 +484,12 @@ public class Funciones {
           return Vertice;
       }
       
+      /**
+     * Metodo para verificar si todos los almacenes estan vistos
+     * @param visto Array de vertices 
+     * @return vistos Retorna true si todos los vertices han sido visitados
+     */
+      
       public static boolean VistosTodos(boolean[] visto){
           boolean vistos = true;
           for(int i = 0; i<visto.length; i++){
@@ -432,45 +498,50 @@ public class Funciones {
               }
           }return vistos;
       }
-      
+                     /**
+                    * Metodo para devolver la ruta mas cercana con el producto solicitado
+                    * @param pedido Array de productos pedidos
+                    * @param i Posicion del producto buscado en el array
+                    * @param cantidad Cantidad solicitada del producto
+                    */
                  public static void RutaCercana(String[] pedido, int i, int cantidad) {
          
                     Nodo<Almacen> seleccion = Menu.grafo.BuscarAlmacen((String) AlmacenesBox.getSelectedItem());
                     Camino camino = null;
                     Producto producto = null;
                     Nodo<Almacen>  temp = Menu.grafo.getListaAlm().getFirst();
-                    for (int j=0;j<Menu.grafo.getListaAlm().getSize();j++) {
-                        producto = Funciones.BuscarProducto(temp.getData().getProductos(), pedido[i]);
+                    for (int j=0;j<Menu.grafo.getListaAlm().getSize();j++) { 
+                        producto = Funciones.BuscarProducto(temp.getData().getProductos(), pedido[i]); //busca el producto en cada almacen
                         if (producto!= null && !seleccion.getData().equals(temp.getData())) {
                         Camino caminoAux = Funciones.Dijkstra(Menu.grafo, temp, seleccion);
-                            if ((camino==null || caminoAux.getDistancia() < camino.getDistancia()) && producto.getCantidad()!=0){
+                            if ((camino==null || caminoAux.getDistancia() < camino.getDistancia()) && producto.getCantidad()!=0){ //verifica que sea el almacén más cercano con el producto disponible
                                 camino = caminoAux;
                             }
                         }
                         temp = temp.getpNext();
                     }
-                        if (camino!=null) {
+                        if (camino!=null) { //si no hay ningún almacen con el producto el camino retorna null
                         JOptionPane.showMessageDialog(null, "El almacen seleccionado no cuenta con suficiente stock del producto solicitado.\nSe buscó en el almacén  más cercano:\n"+camino.MostrarCamino());
                         
                         
                         String almacenes = camino.getAlmacenes().nombresAlmacenes();
-                        String[] alm_split = almacenes.split("\n");
-                        
-                        Lista<Ruta> lista_rutas = new Lista<Ruta>();
-        
-                        for (int k=0;k<alm_split.length-1;k++) {
-                        Ruta ruta = Menu.grafo.getListaRutas().BuscarRuta(alm_split[k+1], alm_split[k]);
-                        lista_rutas.InsertInFinal(ruta);
-                        }
-
-                        String rutas = lista_rutas.printRutas();
+                        String[] alm_split = almacenes.split("\n"); //                                   ///////////////////////////
+//                                                                                                            //                        
+                        Lista<Ruta> lista_rutas = new Lista<Ruta>(); //                                       // Esto es para la impresión
+        //                                                                                                    // del grafo
+                        for (int k=0;k<alm_split.length-1;k++) { //                                           //
+                        Ruta ruta = Menu.grafo.getListaRutas().BuscarRuta(alm_split[k+1], alm_split[k]); //   //
+                        lista_rutas.InsertInFinal(ruta); //                                               //
+                        } //                                                                                  //
+ //                                                                                                           //
+                        String rutas = lista_rutas.printRutas(); //                                           ///////////////////////////
                         
                         DemoGrafo.mostrar(almacenes, rutas);
                         
                         Almacen almacen_destino =(Almacen) camino.getAlmacenes().getLast().getData();
                         producto = Funciones.BuscarProducto(almacen_destino.getProductos(), pedido[i]);
                         
-                        producto.setCantidad(producto.getCantidad()-cantidad);
+                        producto.setCantidad(producto.getCantidad()-cantidad); // descuenta la cantidad solicitada en el almacén más cercano
                             if (producto.getCantidad()<0){
                                 JOptionPane.showMessageDialog(null, "No hay suficiente stock del producto solicitado en el almacén más cercano. Faltante: " + String.valueOf(0-producto.getCantidad()));
                                 producto.setCantidad(0);

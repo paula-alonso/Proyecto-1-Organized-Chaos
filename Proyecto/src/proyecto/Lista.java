@@ -6,7 +6,7 @@ package proyecto;
 
 /**
  *
- * @author alons
+ * @author Paula Alonso y Marielena Ginez
  */
 public class Lista<T> {
     private Nodo First;
@@ -65,7 +65,11 @@ public class Lista<T> {
     public void setSize(int size) {
         this.size = size;
     }
-
+    
+     /**
+     * Metodo para insertar un elemento de primero en la lista
+     * @param elem Elemento a insertar
+     */
     public void InsertAtFirst(Object elem){
         Nodo nuevo = new Nodo(elem);
         if(!isEmpty()){
@@ -81,6 +85,12 @@ public class Lista<T> {
         size++;
     }
     
+    
+    /**
+     * Metodo para insertar un elemento de ultimo en la lista
+     * @param elem Elemento a insertar
+     */
+    
     public void InsertInFinal(Object elem){
         Nodo nuevo = new Nodo(elem);
         if (isEmpty()){
@@ -91,6 +101,13 @@ public class Lista<T> {
             size++;    
         }
     }
+    
+     /**
+     * Metodo para buscar una ruta
+     * @param origen Almacen origen
+     * @param destino Almacen destino
+     * @return ruta Retorna null si no se encuentra
+     */
 
     public Ruta BuscarRuta(String origen, String destino){
         Nodo<Ruta> temp = First;
@@ -105,7 +122,12 @@ public class Lista<T> {
         }
         }
         return null;
-    }        
+    } 
+    
+     /**
+     * Metodo para imprimir productos
+     * @return object_string
+     */
 
     public String printProductos(){
         Nodo<Producto> temp = First;
@@ -121,6 +143,11 @@ public class Lista<T> {
         return object_string;
     }
     
+     /**
+     * Metodo para imprimir rutas
+     * @return object_String
+     */
+    
     public String printRutas(){
         Nodo<Ruta> temp = First;
         String object_string = "";
@@ -133,7 +160,12 @@ public class Lista<T> {
         temp = temp.getpNext();
         }
         return object_string;
-    }    
+    }
+
+     /**
+     * Metodo para imprimir
+     * @return almacenes_string
+     */    
     
     public String print(){
         Nodo<Almacen> temp = First;
@@ -147,7 +179,12 @@ public class Lista<T> {
         temp = temp.getpNext();
         }
         return almacenes_string;
-    }  
+    }
+    
+    /**
+     * Metodo para devolver un string de los nombres de los almacenes
+     * @return almacenes_string
+     */
     
         public String nombresAlmacenes(){
         Nodo<Almacen> temp = First;
@@ -163,7 +200,12 @@ public class Lista<T> {
         return almacenes_string;
 
       
-        }    
+        }
+        
+    /**
+     * Metodo para separar las adyacencias en una array
+     * @return ady Array de adyacencias
+     */        
         
         public String[] separarAdyacencias() {
         String[] ady;
@@ -180,6 +222,11 @@ public class Lista<T> {
         
         return ady;
         }
+        
+    /**
+     * Metodo para devolver un string de los nombres de los productos
+     * @return productos_string
+     */
     
 
         public String nombresProductos(){

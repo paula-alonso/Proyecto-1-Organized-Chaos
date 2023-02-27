@@ -5,18 +5,15 @@
 package Ventanas;
 
 import java.awt.Color;
-import java.io.File;
 import javax.swing.JOptionPane;
 import proyecto.Grafo;
 import proyecto.Almacen;
 import proyecto.Ruta;
-import proyecto.Nodo;
-import proyecto.Lista;
 import proyecto.Funciones;
 
 /**
  *
- * @author marie
+ * @author Paula Alonso y Marielena Ginez
  */
 public class AgregarRuta extends javax.swing.JFrame {
 
@@ -177,9 +174,13 @@ public class AgregarRuta extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+            /**
+            * Metodo para volver
+            * @param evt
+            */
     private void VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverActionPerformed
         // TODO add your handling code here:
+
         Menu.menu.setVisible(true);
         dispose();
     }//GEN-LAST:event_VolverActionPerformed
@@ -200,9 +201,12 @@ public class AgregarRuta extends javax.swing.JFrame {
     private void OrigenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrigenActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_OrigenActionPerformed
-
+            /**
+            * Metodo para guardar ruta
+            * @param evt
+            */
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
-
+                
         Grafo grafo = Menu.grafo;
         String almacenOr = (String) Origen.getSelectedItem();
         String almacenDest = (String) Destino.getSelectedItem();

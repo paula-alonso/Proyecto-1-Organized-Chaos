@@ -5,16 +5,14 @@
 package Ventanas;
 
 import java.awt.Color;
-import java.io.File;
 import javax.swing.JOptionPane;
 import proyecto.Funciones;
-import proyecto.Nodo;
 import proyecto.Producto;
 
 
 /**
  *
- * @author marie
+ * @author Paula Alonso y Marielena Ginez
  */
 public class GestionStockPE extends javax.swing.JFrame {
 
@@ -161,8 +159,12 @@ public class GestionStockPE extends javax.swing.JFrame {
         // TODO add your handling code here:
 
     }//GEN-LAST:event_formMouseMoved
-
+            /**
+            * Metodo guardar producto existente
+            * @param evt
+            */
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
+               
         String productoSelct = (String) Productos.getSelectedItem();
         boolean isNum = Funciones.ValidarNumero(cantidad.getText());
         if(isNum){

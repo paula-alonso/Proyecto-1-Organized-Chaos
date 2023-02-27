@@ -5,12 +5,11 @@
 package Ventanas;
 
 import java.awt.Color;
-import java.io.File;
 
 
 /**
  *
- * @author marie
+ * @author Paula Alonso y Marielena Ginez
  */
 public class ReporteDisponibilidad extends javax.swing.JFrame {
 

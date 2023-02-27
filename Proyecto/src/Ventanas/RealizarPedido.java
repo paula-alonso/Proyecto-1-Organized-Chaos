@@ -4,19 +4,17 @@
  */
 package Ventanas;
 
-import Graficos.DemoGrafo;
+
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import proyecto.Almacen;
-import proyecto.Camino;
 import proyecto.Funciones;
 import proyecto.Lista;
-import proyecto.Nodo;
 import proyecto.Producto;
 
 /**
  *
- * @author alons
+ * @author Paula Alonso y Marielena Ginez
  */
 public class RealizarPedido extends javax.swing.JFrame {
 
@@ -141,8 +139,15 @@ public class RealizarPedido extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+            /**
+            * Metodo para realizar pedido
+            * @param evt
+            * @throws e
+            */
     private void RealizarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RealizarPedidoActionPerformed
+       
+        
+        
         try{
             String[] pedido = input.getText().split(",");
             if(pedido.length%2 !=0){

@@ -5,14 +5,13 @@
 package Ventanas;
 
 import java.awt.Color;
-import java.io.File;
 import javax.swing.JOptionPane;
 import proyecto.Funciones;
 
 
 /**
  *
- * @author marie
+ * @author Paula Alonso y Marielena Ginez
  */
 public class AgregarAlmacen extends javax.swing.JFrame {
 
@@ -352,17 +351,26 @@ public class AgregarAlmacen extends javax.swing.JFrame {
         // TODO add your handling code here:
 
     }//GEN-LAST:event_Origen1MouseClicked
-
+            /**
+            * Metodo para rellenar casillas con el nombre introducido
+            * @param evt
+            */
     private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
         // TODO add your handling code here:
+
         String nombre = Nombre.getText();
        
         Destino1.setText(nombre);
         Origen2.setText(nombre);
     }//GEN-LAST:event_formMouseMoved
-
+            /**
+            * Metodo para guardar almacén
+            * @param evt
+            */
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
         // TODO add your handling code here:\
+        
+
         Boolean valid = true;
         String nombre = Nombre.getText();
         String origen1 = (String) Origen1.getSelectedItem();

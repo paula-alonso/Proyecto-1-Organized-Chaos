@@ -11,7 +11,7 @@ import proyecto.Producto;
 
 /**
  *
- * @author alons
+ * @author Paula Alonso y Marielena Ginez
  */
 public class GestionStockPN extends javax.swing.JFrame {
 
@@ -146,8 +146,14 @@ public class GestionStockPN extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+        /**
+         * Metodo guardar producto nuevo
+         * @param evt
+         */
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
+        
+
+        
         String nombreP1 = input.getText();
         
         //Pone solo la primera letra mayuscula

@@ -5,8 +5,8 @@
 package proyecto;
 
 /**
- *
- * @author marie
+ * Esta clase sirve para la creacion de una cola
+ * @author Paula Alonso y Marielena Ginez
  */
 public class Cola<T> {
     
@@ -14,15 +14,24 @@ public class Cola<T> {
     private Nodo Last;
     private int size;
 
+     /**
+     * Metodo constructor por defecto
+     */
     public Cola() {
         this.First = null;
         this.Last = null;
         this.size = 0;
     }
-    
+     /**
+     * @return the getFirst() == null Verifica si si la lista está vacía
+     */
     public boolean isEmpty(){
         return getFirst() == null;
     }
+    
+    /**
+     * Metodo para vaciar la lista
+     */
 
     public void empty(){
         this.First = null;
@@ -38,6 +47,10 @@ public class Cola<T> {
     }
     
     
+     /**
+     * Metodo encolar
+     * @param elem Elemento a encolar
+     */
     
     public void Encolar(T elem){
         Nodo nuevo = new Nodo(elem);
@@ -53,6 +66,10 @@ public class Cola<T> {
             size++;
         }
     }
+    
+    /**
+     * Metodo desencolar
+     */
     
     public void Desencolar(){
       

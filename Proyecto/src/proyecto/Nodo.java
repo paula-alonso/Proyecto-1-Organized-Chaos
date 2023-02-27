@@ -6,11 +6,16 @@ package proyecto;
 
 /**
  *
- * @author alons
+ * @author Paula Alonso y Marielena Ginez
  */
 public class Nodo<T> {
     private T data;
     private Nodo<T> pNext;
+    
+    /**
+     * Metodo constructor parametrizado
+     * @param data Objeto contenido dentro del nodo
+     */
 
     public Nodo(T data) {
         this.data = data;

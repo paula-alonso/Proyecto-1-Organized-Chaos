@@ -6,7 +6,7 @@ package proyecto;
 
 /**
  *
- * @author marie
+ * @author Paula Alonso y Marielena Ginez
  */
 public class Pila<T> {
     
@@ -14,15 +14,26 @@ public class Pila<T> {
     private Nodo Last;
     private int size;
 
+    /**
+     * Metodo constructor 
+     */
     public Pila() {
         this.First = null;
         this.Last = null;
         this.size = 0;
     }
     
+    /**
+     * Metodo para comprobar si la pila esta vacia
+     * @return getFirst() == null Devuelve si la pila esta vacia
+     */
     public boolean isEmpty(){
         return getFirst() == null;
     }
+    
+     /**
+     * Metodo para vaciar la pila
+     */   
 
     public void empty(){
         this.First = null;
@@ -38,7 +49,10 @@ public class Pila<T> {
     }
     
     
-    
+    /**
+     * Metodo apilar
+     * @param elem Objeto a apilar
+     */
     public void Apilar(Object elem){
         Nodo nuevo = new Nodo(elem);
         if(!isEmpty()){
@@ -52,7 +66,10 @@ public class Pila<T> {
         }
         size++;
     }
-    
+
+    /**
+     * Metodo desapilar
+     */    
     public void Desapilar(){
       
         if(!this.isEmpty()){

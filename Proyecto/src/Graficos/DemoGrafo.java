@@ -11,14 +11,23 @@ import javax.swing.JOptionPane;
 import org.graphstream.graph.*;
 import org.graphstream.graph.implementations.*;
 import org.graphstream.ui.view.Viewer;
-import proyecto.Camino;
-import proyecto.Grafo;
-import proyecto.Lista;
-import proyecto.Nodo;
-import proyecto.Ruta;
+
+
+/**
+ * Esta clase contiene los gráficos para el Grafo
+ * @author Paula Alonso y Marielena Ginez
+ * @version 1.0
+ */
+
     
 public class DemoGrafo {
     public static void mostrar(String almacenes, String rutas) {
+        
+     /**
+     * Método para imprir el gráfico
+     * @param almacenes Almacenes
+     * @param rutas Rutas
+     */
         
         Graph graph = new SingleGraph("Gráfico");
         graph.setStrict(false);
@@ -27,9 +36,7 @@ public class DemoGrafo {
         
         System.setProperty("org.graphstream.ui.renderer",
                 "org.graphstream.ui.j2dviewer.J2DGraphRenderer");
-       
-        
-        
+
      
         
         if (!almacenes.equalsIgnoreCase("")) {

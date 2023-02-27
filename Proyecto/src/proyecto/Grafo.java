@@ -7,8 +7,8 @@ package proyecto;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author alons
+ * Esta clase contiene los atributos y metodos de un Grafo
+ * @author Paula Alonso y Marielena Ginez
  */
 public class Grafo {
     private boolean EsDirigido;
@@ -16,6 +16,10 @@ public class Grafo {
     private Lista<Almacen> listaAlm;
     private Lista<Ruta> listaRutas;
 
+    
+     /**
+     * Metodo constructor por defecto
+     */
     public Grafo() {
         this.EsDirigido = EsDirigido;
         this.NumAlmacenes = 0;
@@ -23,11 +27,18 @@ public class Grafo {
         this.listaRutas = new Lista<Ruta>();
     }
     
+     /**
+     * @return the NumAlmacenes == 0 Boolean que verifica si el almacen esta vacio
+     */
     public boolean isEmpty(){
         return NumAlmacenes == 0;
     }
     
-    // Busca el almacen por el nombre, si no lo encuentra o la lista de almacenes está vacia, retorna null
+     /**
+     * Metodo Busca el almacen por el nombre, si no lo encuentra o la lista de almacenes está vacia, retorna null
+     * @param nombre Nombre del almacen buscado
+     * @return almacen
+     */
     public Nodo<Almacen> BuscarAlmacen(String nombre){
         if(!listaAlm.isEmpty()){
             Nodo<Almacen> almacen = (Nodo<Almacen>) getListaAlm().getFirst();
@@ -39,7 +50,11 @@ public class Grafo {
         }return null;
     }
     
-     // Busca y devuelve el número de vértice, si no lo encuentra regresa -1
+     /**
+     * Metodo Busca y devuelve el número de vértice, si no lo encuentra regresa -1
+     * @param nombre Nombre del vertice buscado
+     * @return num Devuelve el numero del vertice
+     */
     public int numAlmacen(String nombre) {
         Almacen v = new Almacen(nombre);
         Nodo<Almacen> encontrado = BuscarAlmacen(nombre);
@@ -50,8 +65,11 @@ public class Grafo {
             return -1;
         }
     }
-
-    // Crea un nuevo vértice
+    
+     /**
+     * Metodo Crea un nuevo almacen
+     * @param almacen Almacen creado
+     */
     public void nuevoAlmacen (Almacen almacen) {
         String nombre = almacen.getNombre();
         boolean existe = false; 
@@ -65,8 +83,12 @@ public class Grafo {
         }
     } 
     
-    
-     // Comprueba si dos vertices son adyacentes
+     /**
+     * Metodo Retorna si un vertice es adyacente
+     * @param a Nombre vertice 1
+     * @param b Nombre vertice 2
+     * @return boolean
+     */
     public boolean adyacente(String a, String b){
         int v1, v2;
         v1 = numAlmacen(a);
@@ -85,6 +107,11 @@ public class Grafo {
             return false;
         }
     
+     /**
+     * Metodo para agregar una ruta al grafo
+     * @param ruta Ruta a agregar
+     */
+    
     public void AgregarRuta(Ruta ruta){
         String a = ruta.getOrigen_etiqueta();
         String b = ruta.getDestino_etiqueta();
@@ -100,6 +127,11 @@ public class Grafo {
         }
     }
     
+    /**
+     * Metodo para guardar almacenes en la lista de almacenes del grafo
+     * @param lista Lista de almacenes
+     */
+    
     public void guardarAlmacenes(Lista<Almacen> lista){
         if(lista.isEmpty()){
             JOptionPane.showMessageDialog(null,"No hay almacenes guardados");
@@ -109,7 +141,13 @@ public class Grafo {
             nuevoAlmacen(temp.getData());
             temp = temp.getpNext();}
         }
-    }     
+    } 
+
+
+     /**
+     * Metodo para guardar rutas en la lista de rutas
+     * @param lista Lista de rutas en el grafo
+     */    
 
         public void guardarRutas(Lista<Ruta> lista){
         Nodo<Ruta> temp = lista.getFirst();
@@ -122,7 +160,11 @@ public class Grafo {
             temp = temp.getpNext();
         }
     }  
-        
+             /**
+     * Metodo para buscar un almacen por su numero
+     * @param numAlmacen numero del almacen que se busca
+     * @return almacen
+     */
         public Almacen BuscarAlmacenNum(int numAlmacen){
             Nodo<Almacen> almacen = (Nodo<Almacen>) listaAlm.getFirst();
             while (almacen != null){

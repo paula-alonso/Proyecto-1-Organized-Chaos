@@ -6,7 +6,7 @@ package proyecto;
 
 /**
  *
- * @author Paula Alonso
+ * @author Paula Alonso y Marielena Ginez
  */
 public class Almacen {
     private String nombre;
@@ -14,7 +14,12 @@ public class Almacen {
     private Lista<Producto> productos;
     private Lista<Ruta> adyacencia;
     private Almacen prev;
-
+    
+    
+     /**
+     * Metodo constructor parametrizado
+     * @param nombre Nombre del almacen
+     */
     public Almacen(String nombre) {
         this.nombre = nombre;
         this.numvertice = -1;
@@ -23,13 +28,26 @@ public class Almacen {
         this.prev = null;
     }
     
+    /**
+     * @param n Almacen a comparar
+     * @return nombre.equals(n.nombre) Boolean si dos valores son iguales
+     */    
     public boolean equals(Almacen n){    //Retorna true si dos valores son iguales 
         return nombre.equals(n.nombre);
     }
+    
+    /**
+     * Metodo para establecer el numero de vertices
+     * @param n Numero de vertices
+     */    
     public void asigVert(int n) // establece el número de vértices
         {
          numvertice = n;
         }
+    
+    /**
+     * @return nombre(numvertice) Características del vértice
+     */      
     public String toString() // características del vértice
     {
         return nombre + " (" + numvertice + ")";
@@ -44,7 +62,7 @@ public class Almacen {
     }
 
     /**
-     * @param name the name to set
+     * @param nombre the name to set
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -92,7 +110,9 @@ public class Almacen {
         this.adyacencia = adyacencia;
     }
     
-
+    /**
+     * @return almacen_string String del almacen
+     */  
     public String mostrar(){
     String almacen_string = "\n" + nombre + ": " + productos.printProductos();
     return almacen_string;}

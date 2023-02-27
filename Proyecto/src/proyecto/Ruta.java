@@ -6,13 +6,20 @@ package proyecto;
 
 /**
  *
- * @author alons
+ * @author Paula Alonso y Marielena Ginez
  */
 public class Ruta {
     private String origen_etiqueta;
     private String destino_etiqueta;
     private int destino;
     private int peso;
+    
+     /**
+     * Metodo constructor parametrizado
+     * @param origen_etiqueta Etiqueta origen
+     * @param destino_etiqueta Etiqueta destino
+     * @param peso Distancia
+     */
 
     public Ruta(String origen_etiqueta, String destino_etiqueta, int peso) {
         
@@ -21,6 +28,11 @@ public class Ruta {
         this.peso = peso;
     }
     
+    /**
+     * Metodo verifica si dos rutas son iguales
+     * @param n Ruta a comparar
+     * @return destino == a.destino Boolean retorna si son iguales
+     */    
     
     public boolean equals(Object n){
         Ruta a = (Ruta)n;
@@ -90,12 +102,21 @@ public class Ruta {
         this.destino_etiqueta = destino_etiqueta;
     }
     
+        /**
+     * Metodo para mostrar la ruta
+     * @return ruta String de la ruta
+     */
+    
     public String mostrar() {
         String ruta = getOrigen_etiqueta() + "," + getDestino_etiqueta() + "," + String.valueOf(getPeso());
         return ruta;        
                 
     } 
     
+        /**
+     * Metodo para devolver las etiquetas de las rutas
+     * @return ruta
+     */
         public String etiquetas() {
         String ruta = getOrigen_etiqueta() + "," + getDestino_etiqueta();
         return ruta;        

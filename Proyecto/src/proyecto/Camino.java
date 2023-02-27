@@ -5,20 +5,28 @@
 package proyecto;
 
 /**
- *
- * @author alons
+ * Esta clase contiene los atributos y metodos de un camino
+ * @author Paula Alonso y Marielena Ginez
  */
 public class Camino {
     private int distancia;
     private Lista<Almacen> almacenes;
     private Lista<Ruta> rutas;
 
+     /**
+     * Metodo constructor parametrizado
+     * @param distancia Distancia total del camino
+     * @param almacenes Lista de almacenes recorridos
+     */
     public Camino(int distancia, Lista<Almacen> almacenes) {
         this.distancia = distancia;
         this.almacenes = almacenes;
         this.rutas = rutas;
     }
 
+    /**
+     * @return the str_almacenes String de todos los almacenes
+     */
     public String MostrarCamino(){
         Nodo<Almacen> almacen = almacenes.getFirst();
         String str_almacenes = "Ruta:\n";

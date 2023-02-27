@@ -8,7 +8,7 @@ import java.awt.Color;
 
 /**
  *
- * @author marie
+ * @author Paula Alonso y Marielena Ginez
  */
 public class Seleccion2 extends javax.swing.JFrame {
 
@@ -98,13 +98,20 @@ public class Seleccion2 extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+            /**
+            * Metodo para cancelar accion
+            * @param evt
+            */
     private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_CancelarActionPerformed
-
+            /**
+            * Metodo para seleccionar almacen
+            * @param evt
+            */
     private void OKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OKActionPerformed
+                
         seleccionado = (String) AlmacenesBox.getSelectedItem();
         new SeleccionProductos().setVisible(true);
         dispose();

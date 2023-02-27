@@ -6,7 +6,7 @@ package proyecto;
 
 /**
  *
- * @author alons
+ * @author Paula Alonso y Marielena Ginez
  */
 public class Producto {
     private String nombre;
@@ -16,7 +16,11 @@ public class Producto {
         this.nombre = nombre;
         this.cantidad = cantidad;
     }
-    
+
+    /**
+     * Metodo mostrar producto
+     * @return producto_strig String del producto
+     */    
 
     public String mostrar(){
     String producto_string = getNombre() + ": " + getCantidad();

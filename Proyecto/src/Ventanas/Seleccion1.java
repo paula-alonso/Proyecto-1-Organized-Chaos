@@ -8,7 +8,7 @@ import java.awt.Color;
 
 /**
  *
- * @author marie
+ * @author Paula Alonso y Marielena Ginez
  */
 public class Seleccion1 extends javax.swing.JFrame {
 
@@ -96,14 +96,25 @@ public class Seleccion1 extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+            /**
+            * Metodo para cancelar operación
+            * @param evt
+            */
     private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
         // TODO add your handling code here:
+
+        
         dispose();
     }//GEN-LAST:event_CancelarActionPerformed
-
+            /**
+            * Metodo para selección agregar almacén o ruta
+            * @param evt
+            */
     private void OKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OKActionPerformed
         // TODO add your handling code here:
+
+        
+        
         String seleccion = (String) SeleccionBox.getSelectedItem();
         
         String items = Menu.grafo.getListaAlm().nombresAlmacenes(); //Obtiene los nombres de los almacenes cargados

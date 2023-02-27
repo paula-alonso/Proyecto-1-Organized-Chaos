@@ -17,7 +17,7 @@ import proyecto.Producto;
 
 /**
  *
- * @author marie
+ * @author Paula Alonso y Marielena Ginez
  */
 public class Menu extends javax.swing.JFrame {
 
@@ -182,25 +182,41 @@ public class Menu extends javax.swing.JFrame {
 
     private void ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarActionPerformed
         // TODO add your handling code here:
+        /**
+         * Metodo para actualizar fichero
+         */
         File fichero = Funciones.FileChooser();
         Funciones.ActualizarRepositorio(grafo, fichero);
     }//GEN-LAST:event_ActualizarActionPerformed
-
+            /**
+            * Metodo para mostrar la ventana selección 1
+            * @param evt
+            */
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
         // TODO add your handling code here:
+
         new Seleccion1().setVisible(true);
     }//GEN-LAST:event_AgregarActionPerformed
-
+            /**
+            * Metodo para mostrar los reportes
+            * @param evt
+            */
     private void ReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReporteActionPerformed
         // TODO add your handling code here:
+        
+        
         new ReporteDisponibilidad().setVisible(true);
         menu.setVisible(false);
         ReporteDisponibilidad.ReporteAncho.setText(Funciones.RecorridoAncho(grafo));
         ReporteDisponibilidad.ReporteProfundidad.setText(Funciones.RecorridoProfundidad(grafo));
     }//GEN-LAST:event_ReporteActionPerformed
-
+            /**
+            * Metodo para llamar la función mostrar grafo
+            * @param evt
+            */
     private void MostrarGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarGrafoActionPerformed
         // TODO add your handling code here:
+        
         
         String almacenes = grafo.getListaAlm().nombresAlmacenes();
         String rutas = grafo.getListaRutas().printRutas();
@@ -209,9 +225,13 @@ public class Menu extends javax.swing.JFrame {
        
   
     }//GEN-LAST:event_MostrarGrafoActionPerformed
-
+            /**
+            * Metodo para llamar función cargar txt
+            * @param evt
+            */
     private void CargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarActionPerformed
         // TODO add your handling code here:
+        
         
             File fichero = Funciones.FileChooser();
             if (grafo.isEmpty()) {
@@ -228,9 +248,14 @@ public class Menu extends javax.swing.JFrame {
             }
  
     }//GEN-LAST:event_CargarActionPerformed
-
+            /**
+            * Metodo para gestión de stock
+            * @param evt
+            */
     private void GestionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GestionActionPerformed
         // TODO add your handling code here:
+
+        
         
         if (!Menu.grafo.getListaAlm().isEmpty()) {
             new Seleccion2().setVisible(true);
@@ -245,7 +270,10 @@ public class Menu extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No hay datos registrados");
         }
     }//GEN-LAST:event_GestionActionPerformed
-
+            /**
+            * Metodo para llamar funciones realizar pedido
+            * @param evt
+            */
     private void PedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PedidoActionPerformed
         if(!Menu.grafo.isEmpty()){
         new RealizarPedido().setVisible(true);
